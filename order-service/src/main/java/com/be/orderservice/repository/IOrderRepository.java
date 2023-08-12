@@ -1,0 +1,10 @@
+package com.be.orderservice.repository;
+
+import com.be.orderservice.model.Order;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface IOrderRepository extends JpaRepository<Order, UUID> {
+}
+
