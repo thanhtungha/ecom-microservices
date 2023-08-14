@@ -114,16 +114,18 @@ public class OrderServiceImpl implements IOrderService {
                 .map(orderItem -> orderItem.getProductId()
                         .toString())
                 .toList();
-        List<ProductDTO> products = productClient.getListProducts(
-                authorizationHeader,
-                productIds);
-        for (OrderItemDTO orderItemDTO : result.getOrderItems()) {
-            UUID productId = orderItemDTO.getProductId();
-            products.stream()
-                    .filter(productDTO -> productDTO.getId()
-                            .equals(productId))
-                    .findFirst()
-                    .ifPresent(orderItemDTO::setProduct);
+        if(!productIds.isEmpty()) {
+            List<ProductDTO> products = productClient.getListProducts(
+                    authorizationHeader,
+                    productIds);
+            for (OrderItemDTO orderItemDTO : result.getOrderItems()) {
+                UUID productId = orderItemDTO.getProductId();
+                products.stream()
+                        .filter(productDTO -> productDTO.getId()
+                                .equals(productId))
+                        .findFirst()
+                        .ifPresent(orderItemDTO::setProduct);
+            }
         }
 
         return result;

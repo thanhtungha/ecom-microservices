@@ -1,6 +1,9 @@
-package com.be.orderservice;
+package com.be.cartservice;
 
-import com.be.orderservice.dto.*;
+import com.be.cartservice.dto.CartDTO;
+import com.be.cartservice.dto.ListProducts;
+import com.be.cartservice.dto.ProductDTO;
+import com.be.cartservice.dto.UserDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
@@ -29,10 +32,10 @@ public abstract class AbstractContainerBaseTest {
 
     public final String AUTH_BASE_API = "/api/auth";
     public final String PRODUCT_BASE_API = "/api/product";
-    public final String ORDER_BASE_API = "/api/order";
+    public final String CART_BASE_API = "/api/cart";
     public static String authorizationHeader;
     public static UserDTO userDTO;
-    public static OrderDTO orderDTO;
+    public static CartDTO cartDTO;
     public static ProductDTO productDTO1;
     public static ProductDTO productDTO2;
     @Autowired
@@ -100,6 +103,15 @@ public abstract class AbstractContainerBaseTest {
                         .withBody(body)));
 
         stubFor(get(urlEqualTo(
+                PRODUCT_BASE_API + "/list-product?ids=" + productDTO2.getId()
+                        .toString() + "&ids=" + productDTO1.getId()
+                        .toString())).withHeader("Authorization",
+                        equalTo(authorizationHeader))
+                .willReturn(aResponse().withStatus(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(body)));
+
+        stubFor(get(urlEqualTo(
                 PRODUCT_BASE_API + "/list-product?ids=" + productDTO1.getId()
                         .toString())).withHeader("Authorization",
                         equalTo(authorizationHeader))
@@ -107,5 +119,12 @@ public abstract class AbstractContainerBaseTest {
                         .withHeader("Content-Type", "application/json")
                         .withBody(body)));
 
+        stubFor(get(urlEqualTo(
+                PRODUCT_BASE_API + "/list-product?ids=" + productDTO2.getId()
+                        .toString())).withHeader("Authorization",
+                        equalTo(authorizationHeader))
+                .willReturn(aResponse().withStatus(200)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody(body)));
     }
 }

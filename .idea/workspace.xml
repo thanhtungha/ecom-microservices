@@ -5,38 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94aeed82-866f-482a-b01a-a7c22818e2ed" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto/ListProducts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto/OrderItemDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto/ProductDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto/ReviewDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto/RqCancelArgs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto/RqCreateArgs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto/RqUpdateArgs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto/UserDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/model/OrderItem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/service/webclient/AuthClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/service/webclient/ProductClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/test/java/com/be/orderservice/AbstractContainerBaseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/test/java/com/be/orderservice/controller/OrderControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/test/java/com/be/orderservice/service/OrderServiceImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/test/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/config/WebClientConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/ListProducts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/webclient/AuthClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/dto/CartItemDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/dto/ListProducts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/dto/ProductDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/dto/RqProductArgs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/model/CartItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/webclient/AuthClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/webclient/ProductClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/AbstractContainerBaseTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/controller/CartControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart-service/src/test/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice/service/AuthServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice/service/AuthServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto/OrderDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto/OrderDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/mappers/IOrderMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/mappers/IOrderMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/repository/IOrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/repository/IOrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/service/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/service/IOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/dto/CartDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/dto/CartDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/model/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/repository/ICartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/repository/ICartRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/CartServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/ICartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/ICartService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/service/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/service/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/IProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/test/java/com/be/orderservice/AbstractContainerBaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/test/java/com/be/orderservice/AbstractContainerBaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/test/java/com/be/orderservice/service/OrderServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/test/java/com/be/orderservice/service/OrderServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,17 +71,17 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "jdk.selected.JAVA_MODULE": "corretto-17",
     "last_directory_selection": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/auth-service/src/test/java/com/be",
-    "last_opened_file_path": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/order-service/src/test",
+    "last_opened_file_path": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/cart-service/src/test",
     "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/cart-service/src/test" />
+      <recent name="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service" />
+      <recent name="$PROJECT_DIR$/cart-service/src/main/resources" />
       <recent name="$PROJECT_DIR$/order-service/src/test" />
       <recent name="$PROJECT_DIR$/order-service/src/main/resources" />
-      <recent name="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/service" />
-      <recent name="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto" />
-      <recent name="$PROJECT_DIR$/product-service/src/test" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -98,43 +90,47 @@
       <recent name="com.be.authservice" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.be.cartservice.controller" />
+      <recent name="com.be.cartservice.service" />
       <recent name="com.be.orderservice.controller" />
       <recent name="com.be.orderservice.service" />
       <recent name="com.be.productservice.service" />
-      <recent name="com.be.productservice.controller" />
-      <recent name="com.be.authservice.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.be.cartservice" />
+      <recent name="com.be.cartservice.dto" />
+      <recent name="com.be.cartservice.model" />
       <recent name="com.be.orderservice" />
       <recent name="com.be.productservice.dto" />
-      <recent name="com.be.orderservice.dto" />
-      <recent name="com.be.orderservice.service.webclient" />
-      <recent name="com.be.productservice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.OrderControllerTest">
-    <configuration name="OrderServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.be.orderservice.OrderServiceApplication" />
-      <module name="order-service" />
+  <component name="RunManager" selected="JUnit.com.be.cartservice in cart-service">
+    <configuration name="CartControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cart-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.be.orderservice.*" />
+          <option name="PATTERN" value="com.be.cartservice.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.be.cartservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.be.cartservice.controller.CartControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.be.productservice.ProductServiceApplication" />
-      <module name="product-service" />
+    <configuration name="CartServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cart-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.be.productservice.*" />
+          <option name="PATTERN" value="com.be.cartservice.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.be.cartservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.be.cartservice.service.CartServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -169,18 +165,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderServiceImplTest.create" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="order-service" />
+    <configuration name="com.be.cartservice in cart-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cart-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.be.orderservice.service.*" />
+          <option name="PATTERN" value="com.be.cartservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.be.orderservice.service" />
-      <option name="MAIN_CLASS_NAME" value="com.be.orderservice.service.OrderServiceImplTest" />
-      <option name="METHOD_NAME" value="create" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.be.cartservice" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -200,11 +194,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.com.be.cartservice in cart-service" />
+        <item itemvalue="JUnit.CartControllerTest" />
+        <item itemvalue="JUnit.CartServiceImplTest" />
         <item itemvalue="JUnit.OrderControllerTest" />
         <item itemvalue="JUnit.OrderServiceImplTest" />
-        <item itemvalue="JUnit.OrderServiceImplTest.create" />
-        <item itemvalue="Application.OrderServiceApplication" />
-        <item itemvalue="Application.ProductServiceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -218,5 +212,41 @@
       <updated>1691101497778</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java</url>
+          <line>99</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.be.cartservice.model.Cart" memberName="createDate" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

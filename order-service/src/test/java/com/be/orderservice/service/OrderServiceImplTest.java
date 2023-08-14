@@ -59,9 +59,7 @@ class OrderServiceImplTest extends AbstractContainerBaseTest {
             List<OrderItem> orderItemList = dbOrder.getOrderItems();
             assertEquals(orderItems.size(), orderItemList.size());
 
-            assertEquals(orderItems.size(),
-                    response.getOrderItems()
-                            .size());
+            assertEquals(orderItems.size(), response.getOrderItems().size());
             orderDTO = response;
         } else {
             fail("test case failed!");
@@ -92,29 +90,17 @@ class OrderServiceImplTest extends AbstractContainerBaseTest {
             List<OrderItem> orderItemList = dbOrder.getOrderItems();
             //db
             assertEquals(orderItems.size(), orderItemList.size());
-            assertEquals(orderItems.get(0)
-                            .getProductId(),
-                    orderItemList.get(0)
-                            .getProductId());
-            assertEquals(orderItems.get(0)
-                            .getQuantity(),
-                    orderItemList.get(0)
-                            .getQuantity());
+            assertEquals(orderItems.get(0).getProductId(),
+                    orderItemList.get(0).getProductId());
+            assertEquals(orderItems.get(0).getQuantity(),
+                    orderItemList.get(0).getQuantity());
 
             //response
-            assertEquals(orderItems.size(),
-                    response.getOrderItems()
-                            .size());
-            assertEquals(orderItems.get(0)
-                            .getProductId(),
-                    response.getOrderItems()
-                            .get(0)
-                            .getProductId());
-            assertEquals(orderItems.get(0)
-                            .getQuantity(),
-                    response.getOrderItems()
-                            .get(0)
-                            .getQuantity());
+            assertEquals(orderItems.size(), response.getOrderItems().size());
+            assertEquals(orderItems.get(0).getProductId(),
+                    response.getOrderItems().get(0).getProductId());
+            assertEquals(orderItems.get(0).getQuantity(),
+                    response.getOrderItems().get(0).getQuantity());
         } else {
             fail("test case failed!");
         }
@@ -124,8 +110,7 @@ class OrderServiceImplTest extends AbstractContainerBaseTest {
     @org.junit.jupiter.api.Order(2)
     void cancel() {
         boolean result = service.cancel(authorizationHeader,
-                orderDTO.getId()
-                        .toString());
+                orderDTO.getId().toString());
         Optional<Order> createdOrder = repository.findById(orderDTO.getId());
         if (createdOrder.isPresent() || !result) {
             fail("test case failed!");
@@ -136,19 +121,15 @@ class OrderServiceImplTest extends AbstractContainerBaseTest {
     @org.junit.jupiter.api.Order(1)
     void getOrder() {
         OrderDTO response = service.getOrder(authorizationHeader,
-                orderDTO.getId()
-                        .toString());
+                orderDTO.getId().toString());
         Optional<Order> createdOrder = repository.findById(orderDTO.getId());
         if (createdOrder.isPresent()) {
             Order dbOrder = createdOrder.get();
             List<OrderItem> orderItemList = dbOrder.getOrderItems();
-            assertEquals(orderDTO.getOrderItems()
-                    .size(), orderItemList.size());
+            assertEquals(orderDTO.getOrderItems().size(), orderItemList.size());
 
-            assertEquals(orderDTO.getOrderItems()
-                            .size(),
-                    response.getOrderItems()
-                            .size());
+            assertEquals(orderDTO.getOrderItems().size(),
+                    response.getOrderItems().size());
         } else {
             fail("test case failed!");
         }
