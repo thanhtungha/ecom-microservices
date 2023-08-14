@@ -10,7 +10,5 @@ public interface IProductService {
     boolean remove(String authorizationHeader, String productId);
     ProductDTO getProduct(String authorizationHeader, String productId);
     ProductDTO addReview(String authorizationHeader, RqAddReviewArgs addReviewArgs);
-    public UserDTO verifyToken(String authorizationHeader);
-    public List<UserDTO> getListUserDTO(String authorizationHeader,
-                                        List<String> ids);
+    ListProducts getListProduct(String authorizationHeader, List<String> ids);
 }

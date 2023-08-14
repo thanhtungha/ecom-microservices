@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,11 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderDTO {
-    private UUID id;
-    private Date createDate;
-    private Date updateDate;
-    private UUID ownerId;
-    private UserDTO owner;
+public class RqUpdateArgs {
+    private UUID orderId;
     private List<OrderItemDTO> orderItems;
 }

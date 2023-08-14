@@ -116,6 +116,11 @@ class AuthServiceImplTest extends AbstractContainerBaseTest {
     }
 
     @Test
+    @Order(2)
+    void getListUser() {
+    }
+
+    @Test
     @Order(4)
     void delete() {
         RqLoginArgs loginArgs = new RqLoginArgs("serviceUser", "userPassword");

@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/product")
@@ -103,6 +105,22 @@ public class ProductController {
             ProductDTO productDTO = service.addReview(authorizationHeader,
                     reviewArgs);
             return new ResponseEntity<>(productDTO, HttpStatus.OK);
+        } catch (Exception ex) {
+            if (ex instanceof BaseException) {
+                throw ex;
+            }
+            throw new RestExceptions.InternalServerError(ex.getMessage());
+        }
+    }
+
+    @GetMapping(path = "/list-product")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ListProducts> getListProduct(
+            @NotNull @RequestHeader("Authorization") String authorizationHeader,
+            @RequestParam("ids") List<String> ids) {
+        try {
+            ListProducts products = service.getListProduct(authorizationHeader, ids);
+            return new ResponseEntity<>(products, HttpStatus.OK);
         } catch (Exception ex) {
             if (ex instanceof BaseException) {
                 throw ex;
