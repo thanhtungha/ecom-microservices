@@ -1,14 +1,12 @@
-package com.be.cartservice;
+package com.be.inventoryservice;
 
-import com.be.cartservice.dto.CartDTO;
-import com.be.cartservice.dto.ListProducts;
-import com.be.cartservice.dto.ProductDTO;
-import com.be.cartservice.dto.UserDTO;
+import com.be.inventoryservice.dto.ListProducts;
+import com.be.inventoryservice.dto.ProductDTO;
+import com.be.inventoryservice.dto.UserDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
-import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,7 +30,7 @@ public abstract class AbstractContainerBaseTest {
 
     public final String AUTH_BASE_API = "/api/auth";
     public final String PRODUCT_BASE_API = "/api/product";
-    public final String CART_BASE_API = "/api/cart";
+    public final String INVENTORY_BASE_API = "/api/inventory";
     public static String authorizationHeader;
     public static UserDTO userDTO;
     public static ProductDTO productDTO1;

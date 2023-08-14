@@ -1,4 +1,4 @@
-package com.be.cartservice.dto;
+package com.be.inventoryservice.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RqProductArgs {
+public class RqChangeQuantityArgs {
     @NotNull
     private UUID productId;
+    private int quantity;
 }

@@ -26,11 +26,17 @@ public class CartServiceImpl implements ICartService {
     @Override
     public CartDTO createCart(String authorizationHeader) {
         UserDTO user = authClient.verifyToken(authorizationHeader);
-        Cart cart = new Cart();
-        cart.setCreateDate(new Date());
-        cart.setUpdateDate(new Date());
-        cart.setOwnerId(user.getId());
-        repository.save(cart);
+        Optional<Cart> storedModel = repository.findByOwnerId(
+                user.getId());
+        if (storedModel.isEmpty()) {
+            Cart cart = new Cart();
+            cart.setCreateDate(new Date());
+            cart.setUpdateDate(new Date());
+            cart.setOwnerId(user.getId());
+            repository.save(cart);
+            storedModel = repository.findByOwnerId(user.getId());
+        }
+        Cart cart = storedModel.get();
 
         CartDTO cartDTO = mapper.CartToDTO(cart);
         cartDTO.setOwner(user);
@@ -41,8 +47,7 @@ public class CartServiceImpl implements ICartService {
     public CartDTO addProduct(String authorizationHeader,
                               RqProductArgs productArgs) {
         UserDTO user = authClient.verifyToken(authorizationHeader);
-        Optional<Cart> storedModel = repository.findByIdAndOwnerId(
-                productArgs.getCartId(), user.getId());
+        Optional<Cart> storedModel = repository.findByOwnerId(user.getId());
         if (storedModel.isEmpty()) {
             throw new RestExceptions.NotFound("Cart does not existed!");
         }
@@ -70,8 +75,7 @@ public class CartServiceImpl implements ICartService {
     public CartDTO removeProduct(String authorizationHeader,
                                  RqProductArgs productArgs) {
         UserDTO user = authClient.verifyToken(authorizationHeader);
-        Optional<Cart> storedModel = repository.findByIdAndOwnerId(
-                productArgs.getCartId(), user.getId());
+        Optional<Cart> storedModel = repository.findByOwnerId(user.getId());
         if (storedModel.isEmpty()) {
             throw new RestExceptions.NotFound("Cart does not existed!");
         }
@@ -92,12 +96,11 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public CartDTO getCart(String authorizationHeader, String cartId) {
+    public CartDTO getCart(String authorizationHeader) {
         UserDTO user = authClient.verifyToken(authorizationHeader);
-        Optional<Cart> storedModel = repository.findByIdAndOwnerId(
-                UUID.fromString(cartId), user.getId());
+        Optional<Cart> storedModel = repository.findByOwnerId(user.getId());
         if (storedModel.isEmpty()) {
-            throw new RestExceptions.NotFound("Order does not existed!");
+            throw new RestExceptions.NotFound("Cart does not existed!");
         }
 
         Cart cart = storedModel.get();
@@ -113,7 +116,7 @@ public class CartServiceImpl implements ICartService {
         //Get Product List
         if (!cartItems.isEmpty()) {
             List<String> productIds = cartItems.stream()
-                    .map(orderItem -> orderItem.getProductId().toString())
+                    .map(cartItem -> cartItem.getProductId().toString())
                     .toList();
             List<ProductDTO> products = productClient.getListProducts(
                     authorizationHeader, productIds);

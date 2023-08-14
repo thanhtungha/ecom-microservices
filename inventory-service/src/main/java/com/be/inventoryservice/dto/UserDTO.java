@@ -6,18 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class InventoryDTO {
+public class UserDTO {
     private UUID id;
     private Date createDate;
     private Date updateDate;
-    private UUID ownerId;
-    private UserDTO owner;
-    private List<InventoryItemDTO> inventoryItems;
+    private String userName;
+    private String phoneNumber;
+    private String address;
 }

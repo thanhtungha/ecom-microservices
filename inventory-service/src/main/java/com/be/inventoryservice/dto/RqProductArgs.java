@@ -1,4 +1,4 @@
-package com.be.cartservice.dto;
+package com.be.inventoryservice.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

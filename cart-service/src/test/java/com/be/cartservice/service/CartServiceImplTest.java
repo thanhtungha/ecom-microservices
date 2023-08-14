@@ -2,7 +2,6 @@ package com.be.cartservice.service;
 
 import com.be.cartservice.AbstractContainerBaseTest;
 import com.be.cartservice.dto.CartDTO;
-import com.be.cartservice.dto.CartItemDTO;
 import com.be.cartservice.dto.RqProductArgs;
 import com.be.cartservice.model.Cart;
 import com.be.cartservice.model.CartItem;
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +22,6 @@ class CartServiceImplTest extends AbstractContainerBaseTest {
     public ICartService service;
     @Autowired
     public ICartRepository repository;
-
     @BeforeEach
     void setUp() throws Exception {
         if (userDTO == null) {
@@ -40,7 +37,6 @@ class CartServiceImplTest extends AbstractContainerBaseTest {
         if (createdCart.isPresent()) {
             Cart dbCart = createdCart.get();
             assertEquals(response.getId(), dbCart.getId());
-            cartDTO = response;
         } else {
             fail("test case failed!");
         }
@@ -49,8 +45,7 @@ class CartServiceImplTest extends AbstractContainerBaseTest {
     @Test
     @Order(1)
     void addProduct() {
-        RqProductArgs productArgs = new RqProductArgs(cartDTO.getId(),
-                productDTO1.getId());
+        RqProductArgs productArgs = new RqProductArgs(productDTO1.getId());
 
         CartDTO response = service.addProduct(authorizationHeader, productArgs);
         Optional<Cart> createdCart = repository.findById(response.getId());
@@ -62,20 +57,15 @@ class CartServiceImplTest extends AbstractContainerBaseTest {
 
             //check response
             assertEquals(1, response.getCartItems().size());
-            cartDTO = response;
         } else {
             fail("test case failed!");
         }
-
-        productArgs = new RqProductArgs(cartDTO.getId(), productDTO2.getId());
-        cartDTO = service.addProduct(authorizationHeader, productArgs);
     }
 
     @Test
     @Order(3)
     void removeProduct() {
-        RqProductArgs productArgs = new RqProductArgs(cartDTO.getId(),
-                productDTO1.getId());
+        RqProductArgs productArgs = new RqProductArgs(productDTO1.getId());
 
         CartDTO response = service.removeProduct(authorizationHeader,
                 productArgs);
@@ -84,11 +74,10 @@ class CartServiceImplTest extends AbstractContainerBaseTest {
             Cart dbCart = createdCart.get();
             List<CartItem> cartItems = dbCart.getCartItems();
             //check db
-            assertEquals(1, cartItems.size());
+            assertEquals(0, cartItems.size());
 
             //check response
-            assertEquals(1, response.getCartItems().size());
-            cartDTO = response;
+            assertEquals(0, response.getCartItems().size());
             return;
         }
         fail("test case failed!");
@@ -97,9 +86,8 @@ class CartServiceImplTest extends AbstractContainerBaseTest {
     @Test
     @Order(2)
     void getCart() {
-        CartDTO response = service.getCart(authorizationHeader,
-                cartDTO.getId().toString());
-        Optional<Cart> createdCart = repository.findById(cartDTO.getId());
+        CartDTO response = service.getCart(authorizationHeader);
+        Optional<Cart> createdCart = repository.findById(response.getId());
         if (createdCart.isPresent()) {
             Cart dbCart = createdCart.get();
             assertEquals(dbCart.getCartItems().size(),

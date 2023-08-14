@@ -81,10 +81,9 @@ public class CartController {
     @GetMapping(path = "/get-cart")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> getCart(
-            @RequestHeader("Authorization") String authorizationHeader,
-            @RequestParam("id") String id) {
+            @RequestHeader("Authorization") String authorizationHeader) {
         try {
-            CartDTO cartDTO = service.getCart(authorizationHeader, id);
+            CartDTO cartDTO = service.getCart(authorizationHeader);
             return new ResponseEntity<>(cartDTO, HttpStatus.OK);
         } catch (Exception ex) {
             if (ex instanceof BaseException) {

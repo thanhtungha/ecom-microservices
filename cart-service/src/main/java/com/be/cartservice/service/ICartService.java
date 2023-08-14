@@ -7,5 +7,5 @@ public interface ICartService {
     CartDTO createCart(String authorizationHeader);
     CartDTO addProduct(String authorizationHeader, RqProductArgs productArgs);
     CartDTO removeProduct(String authorizationHeader, RqProductArgs productArgs);
-    CartDTO getCart(String authorizationHeader, String cartId);
+    CartDTO getCart(String authorizationHeader);
 }

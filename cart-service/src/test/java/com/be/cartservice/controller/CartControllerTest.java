@@ -57,7 +57,6 @@ class CartControllerTest extends AbstractContainerBaseTest {
                 CartDTO.class);
         assertEquals(userDTO.getId(), responseProduct.getOwnerId());
         assertEquals(userDTO.getId(), responseProduct.getOwner().getId());
-        cartDTO = responseProduct;
 
         //check db
         Optional<Cart> cartOptional = repository.findById(
@@ -72,8 +71,7 @@ class CartControllerTest extends AbstractContainerBaseTest {
     @Test
     @Order(1)
     void addProduct() throws Exception {
-        RqProductArgs productArgs = new RqProductArgs(cartDTO.getId(),
-                productDTO1.getId());
+        RqProductArgs productArgs = new RqProductArgs(productDTO1.getId());
 
         String reqString = objectMapper.writeValueAsString(productArgs);
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
@@ -90,7 +88,6 @@ class CartControllerTest extends AbstractContainerBaseTest {
         CartDTO responseProduct = objectMapper.readValue(responseBody,
                 CartDTO.class);
         assertEquals(1, responseProduct.getCartItems().size());
-        cartDTO = responseProduct;
 
         //check db
         Optional<Cart> cartOptional = repository.findById(
@@ -107,8 +104,7 @@ class CartControllerTest extends AbstractContainerBaseTest {
     @Test
     @Order(3)
     void removeProduct() throws Exception {
-        RqProductArgs productArgs = new RqProductArgs(cartDTO.getId(),
-                productDTO1.getId());
+        RqProductArgs productArgs = new RqProductArgs(productDTO1.getId());
 
         String reqString = objectMapper.writeValueAsString(productArgs);
         RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
@@ -125,7 +121,6 @@ class CartControllerTest extends AbstractContainerBaseTest {
         CartDTO responseProduct = objectMapper.readValue(responseBody,
                 CartDTO.class);
         assertEquals(0, responseProduct.getCartItems().size());
-        cartDTO = responseProduct;
 
         //check db
         Optional<Cart> cartOptional = repository.findById(
@@ -145,8 +140,7 @@ class CartControllerTest extends AbstractContainerBaseTest {
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
                         CART_BASE_API + "/get-cart")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.AUTHORIZATION, authorizationHeader)
-                .param("id", cartDTO.getId().toString());
+                .header(HttpHeaders.AUTHORIZATION, authorizationHeader);
         MvcResult mvcResult = mockMvc.perform(requestBuilder)
                 .andExpect(status().isOk())
                 .andReturn();
@@ -156,7 +150,6 @@ class CartControllerTest extends AbstractContainerBaseTest {
         CartDTO responseProduct = objectMapper.readValue(responseBody,
                 CartDTO.class);
         assertEquals(1, responseProduct.getCartItems().size());
-        cartDTO = responseProduct;
 
         //check db
         Optional<Cart> cartOptional = repository.findById(
