@@ -78,14 +78,13 @@ public class ProductController {
         }
     }
 
-    @PostMapping(path = "/get-product")
+    @GetMapping(path = "/get-product")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> getProduct(
             @NotNull @RequestHeader("Authorization") String authorizationHeader,
-            @Valid @RequestBody RqProductArgs productArgs) {
+            @RequestParam("id") String id) {
         try {
-            ProductDTO productDTO = service.getProduct(authorizationHeader,
-                    productArgs.getId());
+            ProductDTO productDTO = service.getProduct(authorizationHeader, id);
             return new ResponseEntity<>(productDTO, HttpStatus.OK);
         } catch (Exception ex) {
             if (ex instanceof BaseException) {

@@ -99,7 +99,7 @@ public class ProductServiceImpl implements IProductService {
                                 RqAddReviewArgs addReviewArgs) {
         UserDTO userDTO = verifyToken(authorizationHeader);
         Optional<Product> storedModel = repository.findById(UUID.fromString(
-                addReviewArgs.getProductId()));
+                addReviewArgs.getId()));
         if (storedModel.isEmpty()) {
             throw new RestExceptions.NotFound("Product does not existed!");
         }

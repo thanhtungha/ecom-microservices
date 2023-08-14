@@ -26,7 +26,7 @@ class ProductServiceImplTest extends AbstractContainerBaseTest {
     public IProductRepository repository;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
         if (userDTO == null) {
             createTestUser();
         }
