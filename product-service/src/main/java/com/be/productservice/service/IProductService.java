@@ -1,14 +1,13 @@
 package com.be.productservice.service;
 
-import com.be.productservice.dto.ProductDTO;
-import com.be.productservice.dto.RqAddReviewArgs;
-import com.be.productservice.dto.RqRegisterArgs;
-import com.be.productservice.dto.RqUpdateArgs;
+import com.be.productservice.dto.*;
+
+import java.util.List;
 
 public interface IProductService {
     ProductDTO register(String authorizationHeader, RqRegisterArgs registerArgs);
-    ProductDTO update(RqUpdateArgs updateArgs);
-    boolean remove(String productId);
-    ProductDTO getProduct(String productId);
+    ProductDTO update(String authorizationHeader, RqUpdateArgs updateArgs);
+    boolean remove(String authorizationHeader, String productId);
+    ProductDTO getProduct(String authorizationHeader, String productId);
     ProductDTO addReview(String authorizationHeader, RqAddReviewArgs addReviewArgs);
 }

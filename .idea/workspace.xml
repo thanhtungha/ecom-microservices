@@ -5,20 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94aeed82-866f-482a-b01a-a7c22818e2ed" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/ReviewDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/RqAddReviewArgs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/RqProductArgs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/RqRegisterArgs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/RqUpdateArgs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/UserDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/model/Review.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/dto/ListUsers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/dto/RqGetUserArgs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/test/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/ListUsers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/RqGetUserArgs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/test/java/com/be/productservice/TestUserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product-service/src/test/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/security/AuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/security/AuthenticationProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/IAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/IAuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice/controller/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice/controller/AuthControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/ProductDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto/ProductDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/mappers/IProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/mappers/IProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/repository/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/repository/IProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/IProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/test/java/com/be/productservice/AbstractContainerBaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/test/java/com/be/productservice/AbstractContainerBaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/test/java/com/be/productservice/controller/ProductControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/test/java/com/be/productservice/controller/ProductControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/test/java/com/be/productservice/service/ProductServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/test/java/com/be/productservice/service/ProductServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +38,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -52,26 +62,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_directory_selection": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/auth-service/src/test/java/com/be",
-    "last_opened_file_path": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/product-service/src/main/java/com/be/productservice/dto",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/hathanhtung/Documents/GitHub/ecom-microservices/auth-service/src/test/java/com/be&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/hathanhtung/Documents/GitHub/ecom-microservices/product-service/src/test&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/product-service/src/test" />
+      <recent name="$PROJECT_DIR$/auth-service/src/test" />
+      <recent name="$PROJECT_DIR$/product-service/src/main/resources" />
       <recent name="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/dto" />
       <recent name="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service" />
-      <recent name="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/service" />
-      <recent name="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/dto" />
-      <recent name="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/dto" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -80,18 +90,20 @@
       <recent name="com.be.authservice" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.be.productservice.service" />
+      <recent name="com.be.productservice.controller" />
       <recent name="com.be.authservice.controller" />
       <recent name="com.be.authservice.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.be.productservice" />
       <recent name="com.be.productservice.dto" />
+      <recent name="com.be.authservice.dto" />
       <recent name="com.be.productservice.model" />
       <recent name="com.be.productservice.controller" />
-      <recent name="com.be.productservice.mappers" />
-      <recent name="com.be.productservice.repository" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.com.be.authservice in auth-service">
+  <component name="RunManager" selected="JUnit.ProductControllerTest">
     <configuration name="AuthServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.be.authservice.AuthServiceApplication" />
       <module name="auth-service" />
@@ -105,17 +117,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="auth-service" />
+    <configuration name="ProductServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.be.productservice.ProductServiceApplication" />
+      <module name="product-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.be.authservice.controller.*" />
+          <option name="PATTERN" value="com.be.productservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.be.authservice.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.be.authservice.controller.AuthControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -135,16 +145,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="com.be.authservice in auth-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="auth-service" />
+    <configuration name="ProductControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="product-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.be.authservice.*" />
+          <option name="PATTERN" value="com.be.productservice.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.be.authservice" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="com.be.productservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.be.productservice.controller.ProductControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="product-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.be.productservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.be.productservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.be.productservice.service.ProductServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,10 +190,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.com.be.authservice in auth-service" />
-        <item itemvalue="JUnit.AuthControllerTest" />
-        <item itemvalue="JUnit.AuthServiceImplTest" />
+        <item itemvalue="JUnit.ProductControllerTest" />
+        <item itemvalue="JUnit.ProductServiceImplTest" />
         <item itemvalue="Application.AuthServiceApplication" />
+        <item itemvalue="Application.ProductServiceApplication" />
+        <item itemvalue="JUnit.AuthServiceImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -181,5 +208,16 @@
       <updated>1691101497778</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/ProductServiceImpl.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

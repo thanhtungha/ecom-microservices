@@ -1,10 +1,7 @@
 package com.be.authservice.controller;
 
 import com.be.authservice.AbstractContainerBaseTest;
-import com.be.authservice.dto.RqChangePasswordArgs;
-import com.be.authservice.dto.RqLoginArgs;
-import com.be.authservice.dto.RqRegisterArgs;
-import com.be.authservice.dto.RqUpdateArgs;
+import com.be.authservice.dto.*;
 import com.be.authservice.model.User;
 import com.be.authservice.repository.IAuthRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,9 +44,22 @@ class AuthControllerTest extends AbstractContainerBaseTest {
                 "1234567890");
         String reqString = objectMapper.writeValueAsString(registerArgs);
         RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/register").contentType(
-                MediaType.APPLICATION_JSON).content(reqString);
-        mockMvc.perform(requestBuilder).andExpect(status().isCreated());
+                MockMvcRequestBuilders.post(BASE_API + "/register")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(reqString);
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isCreated());
+
+        //register user 2
+        registerArgs = new RqRegisterArgs("controllerUser2",
+                "user2Password",
+                "1111111111");
+        reqString = objectMapper.writeValueAsString(registerArgs);
+        requestBuilder = MockMvcRequestBuilders.post(BASE_API + "/register")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(reqString);
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isCreated());
     }
 
     @Test
@@ -58,9 +69,12 @@ class AuthControllerTest extends AbstractContainerBaseTest {
                 "userPassword");
         String reqString = objectMapper.writeValueAsString(loginArgs);
         RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/login").contentType(
-                MediaType.APPLICATION_JSON).content(reqString);
-        mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+                MockMvcRequestBuilders.post(BASE_API + "/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(reqString);
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk())
+                .andReturn();
 
         //check response
     }
@@ -69,10 +83,12 @@ class AuthControllerTest extends AbstractContainerBaseTest {
     @Order(3)
     void logout() throws Exception {
         RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/logout").contentType(
-                MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION,
-                "Bearer " + getAccessToken());
-        mockMvc.perform(requestBuilder).andExpect(status().isOk());
+                MockMvcRequestBuilders.post(BASE_API + "/logout")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION,
+                        "Bearer " + getAccessToken());
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk());
 
         //check response
 
@@ -80,7 +96,9 @@ class AuthControllerTest extends AbstractContainerBaseTest {
         Optional<User> createdUser = repository.findByUserName(
                 "controllerUser");
         if (createdUser.isPresent()) {
-            if (createdUser.get().getAccessToken().isEmpty()) {
+            if (createdUser.get()
+                    .getAccessToken()
+                    .isEmpty()) {
                 return;
             }
         }
@@ -95,10 +113,12 @@ class AuthControllerTest extends AbstractContainerBaseTest {
         String reqString = objectMapper.writeValueAsString(changePasswordArgs);
 
         RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/change-password").contentType(
-                MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION,
-                "Bearer " + getAccessToken()).content(reqString);
-        mockMvc.perform(requestBuilder).andExpect(status().isOk());
+                MockMvcRequestBuilders.post(BASE_API + "/change-password")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + getAccessToken())
+                .content(reqString);
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk());
 
         //check response
 
@@ -106,8 +126,8 @@ class AuthControllerTest extends AbstractContainerBaseTest {
         Optional<User> createdUser = repository.findByUserName(
                 "controllerUser");
         if (createdUser.isPresent()) {
-            assertEquals(createdUser.get().getUserPassword(),
-                    changePasswordArgs.getNewPassword());
+            assertEquals(createdUser.get()
+                    .getUserPassword(), changePasswordArgs.getNewPassword());
             return;
         }
         fail("test case failed!");
@@ -121,10 +141,12 @@ class AuthControllerTest extends AbstractContainerBaseTest {
         String reqString = objectMapper.writeValueAsString(updateArgs);
 
         RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/update").contentType(
-                MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION,
-                "Bearer " + getAccessToken()).content(reqString);
-        mockMvc.perform(requestBuilder).andExpect(status().isOk());
+                MockMvcRequestBuilders.post(BASE_API + "/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + getAccessToken())
+                .content(reqString);
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk());
 
         //check response
 
@@ -132,10 +154,10 @@ class AuthControllerTest extends AbstractContainerBaseTest {
         Optional<User> createdUser = repository.findByUserName(
                 "controllerUser");
         if (createdUser.isPresent()) {
-            assertEquals(createdUser.get().getPhoneNumber(),
-                    updateArgs.getPhoneNumber());
-            assertEquals(createdUser.get().getAddress(),
-                    updateArgs.getAddress());
+            assertEquals(createdUser.get()
+                    .getPhoneNumber(), updateArgs.getPhoneNumber());
+            assertEquals(createdUser.get()
+                    .getAddress(), updateArgs.getAddress());
             return;
         }
         fail("test case failed!");
@@ -145,10 +167,32 @@ class AuthControllerTest extends AbstractContainerBaseTest {
     @Order(2)
     void verifyAuth() throws Exception {
         RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.get(BASE_API + "/verify-auth").contentType(
-                MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION,
-                "Bearer " + getAccessToken());
-        mockMvc.perform(requestBuilder).andExpect(status().isOk()).andReturn();
+                MockMvcRequestBuilders.get(BASE_API + "/verify-auth")
+                .header(HttpHeaders.AUTHORIZATION,
+                        "Bearer " + getAccessToken());
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk())
+                .andReturn();
+
+        //check response
+    }
+
+    @Test
+    @Order(2)
+    void getListUser() throws Exception {
+        List<String> ids = repository.findAll()
+                .stream()
+                .map(user -> user.getId()
+                        .toString())
+                .toList();
+        RequestBuilder requestBuilder =
+                MockMvcRequestBuilders.get(BASE_API + "/list-user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + getAccessToken())
+                .queryParam("ids", ids.toArray(new String[0]));
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk())
+                .andReturn();
 
         //check response
     }
@@ -160,15 +204,18 @@ class AuthControllerTest extends AbstractContainerBaseTest {
                 "newPassword");
         String reqString = objectMapper.writeValueAsString(loginArgs);
         RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/login").contentType(
-                MediaType.APPLICATION_JSON).content(reqString);
+                MockMvcRequestBuilders.post(BASE_API + "/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(reqString);
         mockMvc.perform(requestBuilder);
 
         requestBuilder = MockMvcRequestBuilders.post(BASE_API + "/delete" +
-                "-account").contentType(
-                MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION,
-                "Bearer " + getAccessToken());
-        mockMvc.perform(requestBuilder).andExpect(status().isOk());
+                        "-account")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION,
+                        "Bearer " + getAccessToken());
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk());
 
         //check response
 
@@ -186,6 +233,7 @@ class AuthControllerTest extends AbstractContainerBaseTest {
         if (createdUser.isEmpty()) {
             fail("test case failed!");
         }
-        return createdUser.get().getAccessToken();
+        return createdUser.get()
+                .getAccessToken();
     }
 }

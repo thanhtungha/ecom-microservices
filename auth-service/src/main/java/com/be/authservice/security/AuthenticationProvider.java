@@ -30,20 +30,25 @@ public class AuthenticationProvider {
 
     @PostConstruct
     protected void init() {
-        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
+        secretKey = Base64.getEncoder()
+                .encodeToString(secretKey.getBytes());
     }
 
     public String createAccessToken(String account) {
         Date now = new Date();
         Date validity = new Date(now.getTime() + 60 * 60 * 1000 * 24);
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
-        return JWT.create().withIssuer(account).withIssuedAt(now).withExpiresAt(
-                validity).sign(algorithm);
+        return JWT.create()
+                .withIssuer(account)
+                .withIssuedAt(now)
+                .withExpiresAt(validity)
+                .sign(algorithm);
     }
 
     public Authentication validateToken(String jwt) {
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
-        JWTVerifier verifier = JWT.require(algorithm).build();
+        JWTVerifier verifier = JWT.require(algorithm)
+                .build();
         DecodedJWT decoded = verifier.verify(jwt);
         Optional<User> user = repository.findByUserName(decoded.getIssuer());
         User userInfo = user.orElse(null);

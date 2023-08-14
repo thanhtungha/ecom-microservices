@@ -31,15 +31,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(
             HttpSecurity http) throws Exception {
-        http.exceptionHandling().authenticationEntryPoint(
-                customAuthenticationEntryPoint).and().addFilterBefore(new AuthorizationTokenFilter(
-                        authenticationProvider),
-                BasicAuthenticationFilter.class).csrf().disable().sessionManagement().sessionCreationPolicy(
-                SessionCreationPolicy.STATELESS).and().authorizeHttpRequests((requests) -> requests.requestMatchers(
-                HttpMethod.POST,
-                "/api/auth/register",
-                "/api/auth/login",
-                "/api/auth/greeting").permitAll().anyRequest().authenticated());
+        http.exceptionHandling()
+                .authenticationEntryPoint(customAuthenticationEntryPoint)
+                .and()
+                .addFilterBefore(new AuthorizationTokenFilter(
+                                authenticationProvider),
+                        BasicAuthenticationFilter.class)
+                .csrf()
+                .disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeHttpRequests((requests) -> requests.requestMatchers(
+                                HttpMethod.POST,
+                                "/api/auth/register",
+                                "/api/auth/login",
+                                "/api/auth/greeting")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated());
         return http.build();
     }
 
@@ -64,8 +74,6 @@ public class SecurityConfig {
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(
                 source));
 
-        // should be set order to -100 because we need to CorsFilter before
-        // SpringSecurityFilter
         bean.setOrder(CORS_FILTER_ORDER);
         return bean;
     }

@@ -1,0 +1,13 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: product-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/MicroProductService
+    username: admin
+    password: 123456

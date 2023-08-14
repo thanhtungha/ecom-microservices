@@ -10,8 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -41,7 +40,9 @@ public class AuthServiceImpl implements IAuthService {
     public UserDTO login(RqLoginArgs loginArgs) {
         Optional<User> storedModel =
                 repository.findByUserName(loginArgs.getUserName());
-        if (storedModel.isPresent() && storedModel.get().getUserPassword().equals(loginArgs.getUserPassword())) {
+        if (storedModel.isPresent() && storedModel.get()
+                .getUserPassword()
+                .equals(loginArgs.getUserPassword())) {
             User user = storedModel.get();
             user.setAccessToken(authenticationProvider.createAccessToken(user.getUserName()));
             user.setUpdateDate(new Date());
@@ -55,7 +56,7 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public boolean logout(String authorizationHeader) {
-        User user = getUser(authorizationHeader);
+        User user = verifyUser(authorizationHeader);
         user.setAccessToken("");
         user.setUpdateDate(new Date());
         repository.save(user);
@@ -65,8 +66,9 @@ public class AuthServiceImpl implements IAuthService {
     @Override
     public boolean changePassword(String authorizationHeader,
                                   RqChangePasswordArgs changePasswordArgs) {
-        User user = getUser(authorizationHeader);
-        if (user.getUserPassword().equals(changePasswordArgs.getNewPassword())) {
+        User user = verifyUser(authorizationHeader);
+        if (user.getUserPassword()
+                .equals(changePasswordArgs.getNewPassword())) {
             throw new RestExceptions.BadRequest("New password cannot be " +
                     "the same as the old password.");
         }
@@ -77,9 +79,8 @@ public class AuthServiceImpl implements IAuthService {
     }
 
     @Override
-    public UserDTO update(String authorizationHeader,
-                          RqUpdateArgs updateArgs) {
-        User user = getUser(authorizationHeader);
+    public UserDTO update(String authorizationHeader, RqUpdateArgs updateArgs) {
+        User user = verifyUser(authorizationHeader);
         user.setAddress(updateArgs.getAddress());
         user.setPhoneNumber(updateArgs.getPhoneNumber());
         user.setUpdateDate(new Date());
@@ -89,13 +90,26 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public UserDTO getUserInformation(String authorizationHeader) {
-        Optional<User> storedModel =
-                repository.findByAccessToken(extractAccessToken(authorizationHeader));
+        Optional<User> storedModel = repository.findByAccessToken(
+                extractAccessToken(authorizationHeader));
         if (storedModel.isPresent()) {
             return mapper.UserToDTO(storedModel.get());
         } else {
             throw new RestExceptions.Forbidden("Invalid accessToken!");
         }
+    }
+
+    @Override
+    public ListUsers getListUser(String authorizationHeader, List<String> ids) {
+        verifyUser(authorizationHeader);
+        List<UUID> uuidList = ids.stream()
+                .map(UUID::fromString)
+                .toList();
+        List<User> storedModel = repository.findAllById(uuidList);
+        List<UserDTO> userDTOList = storedModel.stream()
+                .map(mapper::UserToDTO)
+                .toList();
+        return new ListUsers(userDTOList);
     }
 
     private String extractAccessToken(String authorizationHeader) {
@@ -108,14 +122,14 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public boolean deleteUser(String authorizationHeader) {
-        User user = getUser(authorizationHeader);
+        User user = verifyUser(authorizationHeader);
         repository.delete(user);
         return true;
     }
 
-    private User getUser(String authorizationHeader) {
-        Optional<User> storedModel =
-                repository.findByAccessToken(extractAccessToken(authorizationHeader));
+    private User verifyUser(String authorizationHeader) {
+        Optional<User> storedModel = repository.findByAccessToken(
+                extractAccessToken(authorizationHeader));
         if (storedModel.isPresent()) {
             return storedModel.get();
         } else {

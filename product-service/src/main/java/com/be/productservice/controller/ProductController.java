@@ -3,7 +3,6 @@ package com.be.productservice.controller;
 import com.be.productservice.dto.*;
 import com.be.productservice.exception.BaseException;
 import com.be.productservice.exception.RestExceptions;
-import com.be.productservice.mappers.IProductMapper;
 import com.be.productservice.service.IProductService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -21,7 +20,6 @@ public class ProductController {
     private static final Logger logger = LoggerFactory.getLogger(
             ProductController.class);
     private final IProductService service;
-    private final IProductMapper mapper;
 
     @PostMapping(path = "/greeting")
     @ResponseStatus(HttpStatus.OK)
@@ -36,7 +34,16 @@ public class ProductController {
     public ResponseEntity<?> register(
             @NotNull @RequestHeader("Authorization") String authorizationHeader,
             @Valid @RequestBody RqRegisterArgs registerArgs) {
-        throw new RestExceptions.NotImplemented();
+        try {
+            ProductDTO productDTO = service.register(authorizationHeader,
+                    registerArgs);
+            return new ResponseEntity<>(productDTO, HttpStatus.CREATED);
+        } catch (Exception ex) {
+            if (ex instanceof BaseException) {
+                throw ex;
+            }
+            throw new RestExceptions.InternalServerError(ex.getMessage());
+        }
     }
 
     @PostMapping(path = "/update")
@@ -44,7 +51,16 @@ public class ProductController {
     public ResponseEntity<?> update(
             @NotNull @RequestHeader("Authorization") String authorizationHeader,
             @RequestBody RqUpdateArgs updateArgs) {
-        throw new RestExceptions.NotImplemented();
+        try {
+            ProductDTO productDTO = service.update(authorizationHeader,
+                    updateArgs);
+            return new ResponseEntity<>(productDTO, HttpStatus.OK);
+        } catch (Exception ex) {
+            if (ex instanceof BaseException) {
+                throw ex;
+            }
+            throw new RestExceptions.InternalServerError(ex.getMessage());
+        }
     }
 
     @PostMapping(path = "/remove-product")
@@ -52,7 +68,14 @@ public class ProductController {
     public void remove(
             @NotNull @RequestHeader("Authorization") String authorizationHeader,
             @Valid @RequestBody RqProductArgs productArgs) {
-        throw new RestExceptions.NotImplemented();
+        try {
+            service.remove(authorizationHeader, productArgs.getId());
+        } catch (Exception ex) {
+            if (ex instanceof BaseException) {
+                throw ex;
+            }
+            throw new RestExceptions.InternalServerError(ex.getMessage());
+        }
     }
 
     @PostMapping(path = "/get-product")
@@ -60,7 +83,16 @@ public class ProductController {
     public ResponseEntity<?> getProduct(
             @NotNull @RequestHeader("Authorization") String authorizationHeader,
             @Valid @RequestBody RqProductArgs productArgs) {
-        throw new RestExceptions.NotImplemented();
+        try {
+            ProductDTO productDTO = service.getProduct(authorizationHeader,
+                    productArgs.getId());
+            return new ResponseEntity<>(productDTO, HttpStatus.OK);
+        } catch (Exception ex) {
+            if (ex instanceof BaseException) {
+                throw ex;
+            }
+            throw new RestExceptions.InternalServerError(ex.getMessage());
+        }
     }
 
     @PostMapping(path = "/add-review")
@@ -68,6 +100,15 @@ public class ProductController {
     public ResponseEntity<?> addReview(
             @NotNull @RequestHeader("Authorization") String authorizationHeader,
             @RequestBody RqAddReviewArgs reviewArgs) {
-        throw new RestExceptions.NotImplemented();
+        try {
+            ProductDTO productDTO = service.addReview(authorizationHeader,
+                    reviewArgs);
+            return new ResponseEntity<>(productDTO, HttpStatus.OK);
+        } catch (Exception ex) {
+            if (ex instanceof BaseException) {
+                throw ex;
+            }
+            throw new RestExceptions.InternalServerError(ex.getMessage());
+        }
     }
 }

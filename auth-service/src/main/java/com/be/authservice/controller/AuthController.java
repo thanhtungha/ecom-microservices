@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/auth")
@@ -104,7 +106,6 @@ public class AuthController {
         }
     }
 
-
     @GetMapping(path = "/verify-auth")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<UserDTO> verifyAuth(
@@ -112,6 +113,22 @@ public class AuthController {
         try {
             UserDTO userDTO = service.getUserInformation(authorizationHeader);
             return new ResponseEntity<>(userDTO, HttpStatus.OK);
+        } catch (Exception ex) {
+            if (ex instanceof BaseException) {
+                throw ex;
+            }
+            throw new RestExceptions.InternalServerError(ex.getMessage());
+        }
+    }
+
+    @GetMapping(path = "/list-user")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ListUsers> getListUser(
+            @RequestHeader("Authorization") String authorizationHeader,
+            @RequestParam("ids") List<String> ids) {
+        try {
+            ListUsers users = service.getListUser(authorizationHeader, ids);
+            return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception ex) {
             if (ex instanceof BaseException) {
                 throw ex;
