@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      #Auth Service
+      routes[0]:
+        id: auth-service
+        uri: lb://auth-service
+        predicates[0]:
+          Path=/api/auth/{segment}
+      #Cart Service
+      routes[1]:
+        id: cart-service
+        uri: lb://cart-service
+        predicates[0]:
+          Path=/api/cart/{segment}
+      #Inventory Service
+      routes[2]:
+        id: inventory-service
+        uri: lb://inventory-service
+        predicates[0]:
+          Path=/api/inventory/{segment}
+      #Order Service
+      routes[3]:
+        id: order-service
+        uri: lb://order-service
+        predicates[0]:
+          Path=/api/order/{segment}
+      #Product Service
+      routes[4]:
+        id: product-service
+        uri: lb://product-service
+        predicates[0]:
+          Path=/api/product/{segment}
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:cloud:
+        gateway:route:RouteDefinitionLocator: INFO
+        gateway: TRACE

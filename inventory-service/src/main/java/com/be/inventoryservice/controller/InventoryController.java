@@ -1,9 +1,6 @@
 package com.be.inventoryservice.controller;
 
-import com.be.inventoryservice.dto.BaseResponse;
-import com.be.inventoryservice.dto.InventoryDTO;
-import com.be.inventoryservice.dto.RqChangeQuantityArgs;
-import com.be.inventoryservice.dto.RqProductArgs;
+import com.be.inventoryservice.dto.*;
 import com.be.inventoryservice.exception.BaseException;
 import com.be.inventoryservice.exception.RestExceptions;
 import com.be.inventoryservice.mappers.IInventoryMapper;
@@ -34,11 +31,9 @@ public class InventoryController {
 
     @PostMapping(path = "/create-inventory")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> createInventory(
-            @RequestHeader("Authorization") String authorizationHeader) {
+    public ResponseEntity<?> createInventory(@RequestBody UserDTO userDTO) {
         try {
-            InventoryDTO inventoryDTO = service.createInventory(
-                    authorizationHeader);
+            InventoryDTO inventoryDTO = service.createInventory(userDTO);
             return new ResponseEntity<>(inventoryDTO, HttpStatus.CREATED);
         } catch (Exception ex) {
             if (ex instanceof BaseException) {

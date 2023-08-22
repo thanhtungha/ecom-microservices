@@ -34,7 +34,7 @@ class InventoryServiceImplTest extends AbstractContainerBaseTest {
     @Test
     @Order(0)
     void createInventory() {
-        InventoryDTO response = service.createInventory(authorizationHeader);
+        InventoryDTO response = service.createInventory(userDTO);
         Optional<Inventory> createdInventory = repository.findById(
                 response.getId());
         if (createdInventory.isPresent()) {

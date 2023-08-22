@@ -27,8 +27,7 @@ public class InventoryServiceImpl implements IInventoryService {
     private final ProductClient productClient;
 
     @Override
-    public InventoryDTO createInventory(String authorizationHeader) {
-        UserDTO user = authClient.verifyToken(authorizationHeader);
+    public InventoryDTO createInventory(UserDTO user) {
         Optional<Inventory> storedModel = repository.findByOwnerId(
                 user.getId());
         if (storedModel.isEmpty()) {
