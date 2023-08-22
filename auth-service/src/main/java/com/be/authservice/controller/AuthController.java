@@ -24,7 +24,7 @@ public class AuthController {
     private final IAuthService service;
     private final IAuthMapper mapper;
 
-    @PostMapping(path = "/greeting")
+    @GetMapping(path = "/greeting")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> greeting() {
         logger.info("greeting");

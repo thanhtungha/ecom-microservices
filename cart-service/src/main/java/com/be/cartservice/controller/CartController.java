@@ -21,7 +21,7 @@ public class CartController {
             CartController.class);
     private final ICartService service;
 
-    @PostMapping(path = "/greeting")
+    @GetMapping(path = "/greeting")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> greeting() {
         logger.info("greeting");

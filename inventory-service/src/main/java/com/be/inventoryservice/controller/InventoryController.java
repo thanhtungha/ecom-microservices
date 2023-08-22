@@ -3,7 +3,6 @@ package com.be.inventoryservice.controller;
 import com.be.inventoryservice.dto.*;
 import com.be.inventoryservice.exception.BaseException;
 import com.be.inventoryservice.exception.RestExceptions;
-import com.be.inventoryservice.mappers.IInventoryMapper;
 import com.be.inventoryservice.service.IInventoryService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -19,9 +18,8 @@ public class InventoryController {
     private static final Logger logger = LoggerFactory.getLogger(
             InventoryController.class);
     private final IInventoryService service;
-    private final IInventoryMapper mapper;
 
-    @PostMapping(path = "/greeting")
+    @GetMapping(path = "/greeting")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> greeting() {
         logger.info("greeting");

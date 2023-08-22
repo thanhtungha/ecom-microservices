@@ -21,7 +21,7 @@ public class OrderController {
             LoggerFactory.getLogger(OrderController.class);
     private final IOrderService service;
 
-    @PostMapping(path = "/greeting")
+    @GetMapping(path = "/greeting")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> greeting() {
         logger.info("greeting");

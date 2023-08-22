@@ -23,7 +23,7 @@ public class ProductController {
             ProductController.class);
     private final IProductService service;
 
-    @PostMapping(path = "/greeting")
+    @GetMapping(path = "/greeting")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> greeting() {
         logger.info("greeting");
