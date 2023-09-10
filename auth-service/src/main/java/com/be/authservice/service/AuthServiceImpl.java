@@ -21,7 +21,7 @@ public class AuthServiceImpl implements IAuthService {
     private final IAuthMapper mapper;
 
     @Override
-    public UserDTO register(RqRegisterArgs registerArgs) {
+    public UserInfoDTO register(RqRegisterArgs registerArgs) {
         Optional<User> storedModel =
                 repository.findByUserName(registerArgs.getUserName());
         if (storedModel.isPresent()) {
@@ -33,11 +33,11 @@ public class AuthServiceImpl implements IAuthService {
         user.setUpdateDate(new Date());
         user.setAccessToken(authenticationProvider.createAccessToken(user.getUserName()));
         repository.save(user);
-        return mapper.UserToDTO(user);
+        return mapper.UserToUserInfoDTO(user);
     }
 
     @Override
-    public UserDTO login(RqLoginArgs loginArgs) {
+    public UserInfoDTO login(RqLoginArgs loginArgs) {
         Optional<User> storedModel =
                 repository.findByUserName(loginArgs.getUserName());
         if (storedModel.isPresent() && storedModel.get()
@@ -47,7 +47,7 @@ public class AuthServiceImpl implements IAuthService {
             user.setAccessToken(authenticationProvider.createAccessToken(user.getUserName()));
             user.setUpdateDate(new Date());
             repository.save(user);
-            return mapper.UserToDTO(user);
+            return mapper.UserToUserInfoDTO(user);
         } else {
             throw new RestExceptions.NotFound("User not found or wrong " +
                     "password");
@@ -79,21 +79,32 @@ public class AuthServiceImpl implements IAuthService {
     }
 
     @Override
-    public UserDTO update(String authorizationHeader, RqUpdateArgs updateArgs) {
+    public UserDTO forgotPassword(RqForgotPasswordArgs forgotPasswordArgs) {
+        Optional<User> storedModel = repository.findByUserName(forgotPasswordArgs.getUserName());
+        if (storedModel.isPresent()) {
+            User user = storedModel.get();
+            return mapper.UserToDTO(user);
+        } else {
+            throw new RestExceptions.Forbidden("User not found!");
+        }
+    }
+
+    @Override
+    public UserInfoDTO update(String authorizationHeader, RqUpdateArgs updateArgs) {
         User user = verifyUser(authorizationHeader);
         user.setAddress(updateArgs.getAddress());
         user.setPhoneNumber(updateArgs.getPhoneNumber());
         user.setUpdateDate(new Date());
         repository.save(user);
-        return mapper.UserToDTO(user);
+        return mapper.UserToUserInfoDTO(user);
     }
 
     @Override
-    public UserDTO getUserInformation(String authorizationHeader) {
+    public UserInfoDTO getUserInformation(String authorizationHeader) {
         Optional<User> storedModel = repository.findByAccessToken(
                 extractAccessToken(authorizationHeader));
         if (storedModel.isPresent()) {
-            return mapper.UserToDTO(storedModel.get());
+            return mapper.UserToUserInfoDTO(storedModel.get());
         } else {
             throw new RestExceptions.Forbidden("Invalid accessToken!");
         }
@@ -106,10 +117,10 @@ public class AuthServiceImpl implements IAuthService {
                 .map(UUID::fromString)
                 .toList();
         List<User> storedModel = repository.findAllById(uuidList);
-        List<UserDTO> userDTOList = storedModel.stream()
-                .map(mapper::UserToDTO)
+        List<UserInfoDTO> userInfoDTOList = storedModel.stream()
+                .map(mapper::UserToUserInfoDTO)
                 .toList();
-        return new ListUsers(userDTOList);
+        return new ListUsers(userInfoDTOList);
     }
 
     private String extractAccessToken(String authorizationHeader) {

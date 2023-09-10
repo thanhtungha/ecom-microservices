@@ -5,17 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94aeed82-866f-482a-b01a-a7c22818e2ed" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/dto/RqForgotPasswordArgs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/dto/UserInfoDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/webclient/InventoryClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/CartServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/ICartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/ICartService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/controller/CartControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/controller/CartControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/service/InventoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/service/InventoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/test/java/com/be/inventoryservice/controller/InventoryControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/test/java/com/be/inventoryservice/controller/InventoryControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/dto/ListUsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/dto/ListUsers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/mappers/IAuthMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/mappers/IAuthMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/repository/IAuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/repository/IAuthRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/IAuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/IAuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice/service/AuthServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice/service/AuthServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +59,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "jdk.selected.JAVA_MODULE": "corretto-17",
     "last_directory_selection": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/auth-service/src/test/java/com/be",
-    "last_opened_file_path": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/auth-service/src/main/java/com/be/authservice/service",
+    "last_opened_file_path": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/inventory-service/src/test",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -67,11 +68,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/inventory-service/src/test" />
       <recent name="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service" />
       <recent name="$PROJECT_DIR$/auth-service/src/main/resources" />
       <recent name="$PROJECT_DIR$/cart-service/src/main/resources" />
       <recent name="$PROJECT_DIR$/inventory-service/src/main/resources" />
-      <recent name="$PROJECT_DIR$/order-service/src/main/resources" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -87,49 +88,60 @@
       <recent name="com.be.orderservice.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.be.authservice.dto" />
       <recent name="com.be.inventoryservice" />
       <recent name="com.be.inventoryservice.dto" />
       <recent name="com.be.inventoryservice.model" />
       <recent name="com.be.cartservice" />
-      <recent name="com.be.cartservice.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.productservice in product-service">
-    <configuration name="InventoryServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="inventory-service" />
+  <component name="RunManager" selected="JUnit.authservice in auth-service">
+    <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ecom.apigateway.ApiGatewayApplication" />
+      <module name="api-gateway" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.be.inventoryservice.service.*" />
+          <option name="PATTERN" value="com.ecom.apigateway.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.be.inventoryservice.service" />
-      <option name="MAIN_CLASS_NAME" value="com.be.inventoryservice.service.InventoryServiceImplTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="cartservice in cart-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="cart-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice" />
+    <configuration name="DiscoveryServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.ecom.discoveryserver.DiscoveryServerApplication" />
+      <module name="discovery-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ecom.discoveryserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="inventoryservice in inventory-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="inventory-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/inventory-service/src/test/java/com/be/inventoryservice" />
+    <configuration name="AuthServiceImplTest.forgotPassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="auth-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.be.authservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.be.authservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.be.authservice.service.AuthServiceImplTest" />
+      <option name="METHOD_NAME" value="forgotPassword" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="orderservice in order-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="order-service" />
+    <configuration name="authservice in auth-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="auth-service" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/order-service/src/test/java/com/be/orderservice" />
+      <dir value="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -161,19 +173,19 @@
       <item itemvalue="Application.InventoryServiceApplication" />
       <item itemvalue="Application.OrderServiceApplication" />
       <item itemvalue="Application.ProductServiceApplication" />
-      <item itemvalue="JUnit.InventoryServiceImplTest" />
-      <item itemvalue="JUnit.cartservice in cart-service" />
-      <item itemvalue="JUnit.inventoryservice in inventory-service" />
-      <item itemvalue="JUnit.orderservice in order-service" />
+      <item itemvalue="Application.ApiGatewayApplication" />
+      <item itemvalue="Application.DiscoveryServerApplication" />
+      <item itemvalue="JUnit.AuthServiceImplTest.forgotPassword" />
+      <item itemvalue="JUnit.authservice in auth-service" />
       <item itemvalue="JUnit.productservice in product-service" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.authservice in auth-service" />
+        <item itemvalue="Application.ApiGatewayApplication" />
+        <item itemvalue="Application.DiscoveryServerApplication" />
+        <item itemvalue="JUnit.AuthServiceImplTest.forgotPassword" />
         <item itemvalue="JUnit.productservice in product-service" />
-        <item itemvalue="JUnit.orderservice in order-service" />
-        <item itemvalue="JUnit.inventoryservice in inventory-service" />
-        <item itemvalue="JUnit.InventoryServiceImplTest" />
-        <item itemvalue="JUnit.cartservice in cart-service" />
       </list>
     </recent_temporary>
   </component>

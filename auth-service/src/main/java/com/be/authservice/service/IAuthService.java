@@ -5,18 +5,20 @@ import com.be.authservice.dto.*;
 import java.util.List;
 
 public interface IAuthService {
-    UserDTO register(RqRegisterArgs registerArgs);
+    UserInfoDTO register(RqRegisterArgs registerArgs);
 
-    UserDTO login(RqLoginArgs loginArgs);
+    UserInfoDTO login(RqLoginArgs loginArgs);
 
     boolean logout(String authorizationHeader);
 
     boolean changePassword(String authorizationHeader,
                            RqChangePasswordArgs changePasswordArgs);
 
-    UserDTO update(String authorizationHeader, RqUpdateArgs updateArgs);
+    UserDTO forgotPassword(RqForgotPasswordArgs forgotPasswordArgs);
 
-    UserDTO getUserInformation(String authorizationHeader);
+    UserInfoDTO update(String authorizationHeader, RqUpdateArgs updateArgs);
+
+    UserInfoDTO getUserInformation(String authorizationHeader);
 
     ListUsers getListUser(String authorizationHeader, List<String> ids);
 

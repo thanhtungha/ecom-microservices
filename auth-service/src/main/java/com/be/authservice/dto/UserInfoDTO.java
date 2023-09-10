@@ -12,12 +12,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserDTO {
+public class UserInfoDTO {
     private UUID id;
     private Date createDate;
     private Date updateDate;
     private String userName;
-    private String userPassword;
     private String phoneNumber;
     private String address;
     private String accessToken;

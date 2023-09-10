@@ -29,7 +29,7 @@ public class SecurityConfig {
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
-    public SecurityFilterChain postSecurityFilterChain(
+    public SecurityFilterChain securityFilterChain(
             HttpSecurity http) throws Exception {
         http.exceptionHandling()
                 .authenticationEntryPoint(customAuthenticationEntryPoint)
@@ -47,29 +47,6 @@ public class SecurityConfig {
                                         "/api/auth/register", "/api/auth/login")
                                 .permitAll()
                                 .requestMatchers(HttpMethod.GET,
-                                        "/api/auth/greeting")
-                                .permitAll()
-                                .anyRequest()
-                                .authenticated());
-        return http.build();
-    }
-
-    @Bean
-    public SecurityFilterChain getSecurityFilterChain(
-            HttpSecurity http) throws Exception {
-        http.exceptionHandling()
-                .authenticationEntryPoint(customAuthenticationEntryPoint)
-                .and()
-                .addFilterBefore(
-                        new AuthorizationTokenFilter(authenticationProvider),
-                        BasicAuthenticationFilter.class)
-                .csrf()
-                .disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeHttpRequests(
-                        (requests) -> requests.requestMatchers(HttpMethod.GET,
                                         "/api/auth/greeting")
                                 .permitAll()
                                 .anyRequest()

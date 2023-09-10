@@ -47,7 +47,7 @@ class AuthServiceImplTest extends AbstractContainerBaseTest {
     @Order(1)
     void login() {
         RqLoginArgs loginArgs = new RqLoginArgs("serviceUser", "userPassword");
-        UserDTO userInfo = service.login(loginArgs);
+        UserInfoDTO userInfo = service.login(loginArgs);
         if (userInfo == null) {
             fail("test case failed!");
         }
@@ -95,12 +95,26 @@ class AuthServiceImplTest extends AbstractContainerBaseTest {
 
     @Test
     @Order(2)
+    void forgotPassword() {
+        RqForgotPasswordArgs forgotPasswordArgs = new RqForgotPasswordArgs(
+                "serviceUser");
+        UserDTO userDTO = service.forgotPassword(forgotPasswordArgs);
+        if (userDTO != null) {
+            assertEquals("serviceUser", userDTO.getUserName());
+            assertEquals("userPassword", userDTO.getUserPassword());
+        } else {
+            fail("test case failed!");
+        }
+    }
+
+    @Test
+    @Order(2)
     void update() {
         RqUpdateArgs updateArgs = new RqUpdateArgs("0987654321", "new address");
-        UserDTO userDTO = service.update(getAuthorizationHeader(), updateArgs);
-        if (userDTO != null) {
-            assertEquals(updateArgs.getPhoneNumber(), userDTO.getPhoneNumber());
-            assertEquals(updateArgs.getAddress(), userDTO.getAddress());
+        UserInfoDTO userInfoDTO = service.update(getAuthorizationHeader(), updateArgs);
+        if (userInfoDTO != null) {
+            assertEquals(updateArgs.getPhoneNumber(), userInfoDTO.getPhoneNumber());
+            assertEquals(updateArgs.getAddress(), userInfoDTO.getAddress());
         } else {
             fail("test case failed!");
         }
@@ -109,15 +123,10 @@ class AuthServiceImplTest extends AbstractContainerBaseTest {
     @Test
     @Order(2)
     void getUserInformation() {
-        UserDTO userDTO = service.getUserInformation(getAuthorizationHeader());
-        if (userDTO == null) {
+        UserInfoDTO userInfoDTO = service.getUserInformation(getAuthorizationHeader());
+        if (userInfoDTO == null) {
             fail("test case failed!");
         }
-    }
-
-    @Test
-    @Order(2)
-    void getListUser() {
     }
 
     @Test
