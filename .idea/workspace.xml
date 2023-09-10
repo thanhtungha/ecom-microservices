@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="94aeed82-866f-482a-b01a-a7c22818e2ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/dto/RqForgotPwdArgs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice/controller/AuthControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice/controller/AuthControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

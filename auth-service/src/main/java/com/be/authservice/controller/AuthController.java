@@ -89,7 +89,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping(path = "/forgot-password")
+    @GetMapping(path = "/forgot-password")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> forgotPassword(
             @Valid @RequestBody RqForgotPasswordArgs forgotPasswordArgs) {
