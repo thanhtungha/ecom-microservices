@@ -41,34 +41,6 @@ class CartControllerTest extends AbstractContainerBaseTest {
     }
 
     @Test
-    @Order(0)
-    void createCart() throws Exception {
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
-                        CART_BASE_API + "/create-cart")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.AUTHORIZATION, authorizationHeader);
-        MvcResult mvcResult = mockMvc.perform(requestBuilder)
-                .andExpect(status().isCreated())
-                .andReturn();
-
-        //check response
-        String responseBody = mvcResult.getResponse().getContentAsString();
-        CartDTO responseProduct = objectMapper.readValue(responseBody,
-                CartDTO.class);
-        assertEquals(userDTO.getId(), responseProduct.getOwnerId());
-        assertEquals(userDTO.getId(), responseProduct.getOwner().getId());
-
-        //check db
-        Optional<Cart> cartOptional = repository.findById(
-                responseProduct.getId());
-        if (cartOptional.isPresent()) {
-            assertEquals(userDTO.getId(), cartOptional.get().getOwnerId());
-            return;
-        }
-        fail("test case failed!");
-    }
-
-    @Test
     @Order(1)
     void addProduct() throws Exception {
         RqProductArgs productArgs = new RqProductArgs(productDTO1.getId());

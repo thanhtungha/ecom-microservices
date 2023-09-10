@@ -29,21 +29,6 @@ public class CartController {
                 new BaseResponse("Hello! This is Cart Service."));
     }
 
-    @PostMapping(path = "/create-cart")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> createCart(
-            @RequestHeader("Authorization") String authorizationHeader) {
-        try {
-            CartDTO cartDTO = service.createCart(authorizationHeader);
-            return new ResponseEntity<>(cartDTO, HttpStatus.CREATED);
-        } catch (Exception ex) {
-            if (ex instanceof BaseException) {
-                throw ex;
-            }
-            throw new RestExceptions.InternalServerError(ex.getMessage());
-        }
-    }
-
     @PostMapping(path = "/add-product")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addProduct(

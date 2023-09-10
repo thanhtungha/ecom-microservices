@@ -6,20 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="94aeed82-866f-482a-b01a-a7c22818e2ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/com/ecom/apigateway/ApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/ecom/apigateway/ApiGatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/webclient/InventoryClient.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/CartServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/CartServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/ICartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/ICartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/controller/CartControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/controller/CartControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/service/InventoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/service/InventoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/test/java/com/be/inventoryservice/controller/InventoryControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/test/java/com/be/inventoryservice/controller/InventoryControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,8 +60,8 @@
     "last_directory_selection": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/auth-service/src/test/java/com/be",
     "last_opened_file_path": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/auth-service/src/main/java/com/be/authservice/service",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.sourceCode.Java"
   }
 }]]></component>
@@ -98,47 +94,42 @@
       <recent name="com.be.cartservice.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AuthServiceApplication">
-    <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ecom.apigateway.ApiGatewayApplication" />
-      <module name="api-gateway" />
+  <component name="RunManager" selected="JUnit.productservice in product-service">
+    <configuration name="InventoryServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="inventory-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.ecom.apigateway.*" />
+          <option name="PATTERN" value="com.be.inventoryservice.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
-        <option name="credential" />
-        <option name="region" />
-        <option name="useCurrentConnection" value="false" />
-      </extension>
+      <option name="PACKAGE_NAME" value="com.be.inventoryservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.be.inventoryservice.service.InventoryServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DiscoveryServerApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.ecom.discoveryserver.DiscoveryServerApplication" />
-      <module name="discovery-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ecom.discoveryserver.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
-        <option name="credential" />
-        <option name="region" />
-        <option name="useCurrentConnection" value="false" />
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="authservice in auth-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="auth-service" />
+    <configuration name="cartservice in cart-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cart-service" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice" />
+      <dir value="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="inventoryservice in inventory-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="inventory-service" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/inventory-service/src/test/java/com/be/inventoryservice" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="orderservice in order-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="order-service" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/order-service/src/test/java/com/be/orderservice" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -169,19 +160,20 @@
       <item itemvalue="Application.CartServiceApplication" />
       <item itemvalue="Application.InventoryServiceApplication" />
       <item itemvalue="Application.OrderServiceApplication" />
-      <item itemvalue="Application.ApiGatewayApplication" />
-      <item itemvalue="Application.DiscoveryServerApplication" />
       <item itemvalue="Application.ProductServiceApplication" />
-      <item itemvalue="JUnit.authservice in auth-service" />
+      <item itemvalue="JUnit.InventoryServiceImplTest" />
+      <item itemvalue="JUnit.cartservice in cart-service" />
+      <item itemvalue="JUnit.inventoryservice in inventory-service" />
+      <item itemvalue="JUnit.orderservice in order-service" />
       <item itemvalue="JUnit.productservice in product-service" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ApiGatewayApplication" />
-        <item itemvalue="Application.DiscoveryServerApplication" />
-        <item itemvalue="Application.ProductServiceApplication" />
-        <item itemvalue="JUnit.authservice in auth-service" />
         <item itemvalue="JUnit.productservice in product-service" />
+        <item itemvalue="JUnit.orderservice in order-service" />
+        <item itemvalue="JUnit.inventoryservice in inventory-service" />
+        <item itemvalue="JUnit.InventoryServiceImplTest" />
+        <item itemvalue="JUnit.cartservice in cart-service" />
       </list>
     </recent_temporary>
   </component>
@@ -196,21 +188,18 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/service/CartServiceImplTest.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/service/InventoryServiceImpl.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="com.be.cartservice.model.Cart" memberName="createDate" />

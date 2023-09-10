@@ -32,7 +32,7 @@ class CartServiceImplTest extends AbstractContainerBaseTest {
     @Test
     @Order(0)
     void createCart() {
-        CartDTO response = service.createCart(authorizationHeader);
+        CartDTO response = service.createCart(userDTO);
         Optional<Cart> createdCart = repository.findById(response.getId());
         if (createdCart.isPresent()) {
             Cart dbCart = createdCart.get();

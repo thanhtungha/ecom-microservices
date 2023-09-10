@@ -27,20 +27,6 @@ public class InventoryController {
                 new BaseResponse("Hello! This is Inventory Service."));
     }
 
-    @PostMapping(path = "/create-inventory")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> createInventory(@RequestBody UserDTO userDTO) {
-        try {
-            InventoryDTO inventoryDTO = service.createInventory(userDTO);
-            return new ResponseEntity<>(inventoryDTO, HttpStatus.CREATED);
-        } catch (Exception ex) {
-            if (ex instanceof BaseException) {
-                throw ex;
-            }
-            throw new RestExceptions.InternalServerError(ex.getMessage());
-        }
-    }
-
     @PostMapping(path = "/add-product")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> addProduct(

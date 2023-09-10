@@ -24,8 +24,7 @@ public class CartServiceImpl implements ICartService {
     private final ProductClient productClient;
 
     @Override
-    public CartDTO createCart(String authorizationHeader) {
-        UserDTO user = authClient.verifyToken(authorizationHeader);
+    public CartDTO createCart(UserDTO user) {
         Optional<Cart> storedModel = repository.findByOwnerId(
                 user.getId());
         if (storedModel.isEmpty()) {
@@ -49,7 +48,8 @@ public class CartServiceImpl implements ICartService {
         UserDTO user = authClient.verifyToken(authorizationHeader);
         Optional<Cart> storedModel = repository.findByOwnerId(user.getId());
         if (storedModel.isEmpty()) {
-            throw new RestExceptions.NotFound("Cart does not existed!");
+            createCart(user);
+            storedModel = repository.findByOwnerId(user.getId());
         }
         Cart cart = storedModel.get();
         boolean isAdded = false;
