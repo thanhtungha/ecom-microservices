@@ -13,13 +13,12 @@ import java.util.List;
 @Component
 public class AuthClient {
     private final WebClient.Builder webClientBuilder;
-    private static final String AUTH_BASE_API =
-            "http://localhost:8080/api" + "/auth";
+    private static final String BASE_API = "http://localhost:8080/api/auth";
 
     public UserDTO verifyToken(String authorizationHeader) {
         UserDTO userDTO = webClientBuilder.build()
                 .get()
-                .uri(AUTH_BASE_API + "/verify-auth")
+                .uri(BASE_API + "/verify-auth")
                 .header("Authorization", authorizationHeader)
                 .retrieve()
                 .bodyToMono(UserDTO.class)
@@ -35,9 +34,8 @@ public class AuthClient {
                                         List<String> ids) {
         ListUsers listUsers = webClientBuilder.build()
                 .get()
-                .uri(AUTH_BASE_API + "/list-user",
-                        uriBuilder -> uriBuilder.queryParam("ids", ids)
-                                .build())
+                .uri(BASE_API + "/list-user",
+                        uriBuilder -> uriBuilder.queryParam("ids", ids).build())
                 .header("Authorization", authorizationHeader)
                 .retrieve()
                 .bodyToMono(ListUsers.class)
@@ -46,7 +44,7 @@ public class AuthClient {
         if (listUsers != null) {
             return listUsers.getUsers();
         }
-        throw new RestExceptions.InternalServerError("Failed to get " +
-                "reviewers" + ".");
+        throw new RestExceptions.InternalServerError(
+                "Failed to get " + "reviewers" + ".");
     }
 }

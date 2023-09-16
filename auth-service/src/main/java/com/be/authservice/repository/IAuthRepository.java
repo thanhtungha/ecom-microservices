@@ -8,8 +8,6 @@ import java.util.UUID;
 
 public interface IAuthRepository extends JpaRepository<User, UUID> {
     Optional<User> findByUserName(String userName);
-    Optional<User> findByPhoneNumber(String phoneNumber);
-
     Optional<User> findByAccessToken(String accessToken);
 }
 
