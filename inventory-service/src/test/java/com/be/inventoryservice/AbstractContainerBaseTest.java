@@ -37,19 +37,17 @@ public abstract class AbstractContainerBaseTest {
     public static ProductDTO productDTO2;
     @Autowired
     public ObjectMapper objectMapper;
-    private static WireMockServer wireMockAuthServer;
-    private static WireMockServer wireMockProductServer;
+    private static WireMockServer wireMockServer;
 
     public void createTestUser() throws Exception {
+        WireMock.configureFor("localhost", 8080);
+        wireMockServer = new WireMockServer(8080);
+        wireMockServer.start();
         setAuthMock();
         setProductMock();
     }
 
     private void setAuthMock() throws JsonProcessingException {
-        WireMock.configureFor("localhost", 8080);
-        wireMockAuthServer = new WireMockServer(8080);
-        wireMockAuthServer.start();
-
         userDTO = new UserDTO();
         userDTO.setId(UUID.randomUUID());
         userDTO.setCreateDate(new Date());
@@ -70,10 +68,6 @@ public abstract class AbstractContainerBaseTest {
     }
 
     private void setProductMock() throws JsonProcessingException {
-        WireMock.configureFor("localhost", 8081);
-        wireMockProductServer = new WireMockServer(8081);
-        wireMockProductServer.start();
-
         productDTO1 = new ProductDTO();
         productDTO1.setId(UUID.randomUUID());
         productDTO1.setName("product 1");
