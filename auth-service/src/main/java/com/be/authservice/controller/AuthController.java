@@ -3,8 +3,8 @@ package com.be.authservice.controller;
 import com.be.authservice.dto.*;
 import com.be.authservice.exception.BaseException;
 import com.be.authservice.exception.RestExceptions;
-import com.be.authservice.mappers.IAuthMapper;
 import com.be.authservice.service.IAuthService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -19,17 +19,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping(path = "/api/auth")
 public class AuthController {
-    private static final Logger logger =
-            LoggerFactory.getLogger(AuthController.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            AuthController.class);
     private final IAuthService service;
-    private final IAuthMapper mapper;
 
     @GetMapping(path = "/greeting")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> greeting() {
         logger.info("greeting");
-        return ResponseEntity.ok(new BaseResponse("Hello! This is Auth " +
-                "Service."));
+        return ResponseEntity.ok(
+                new BaseResponse("Hello! This is Auth " + "Service."));
     }
 
     @PostMapping(path = "/register")
@@ -37,8 +36,8 @@ public class AuthController {
     public ResponseEntity<?> register(
             @Valid @RequestBody RqRegisterArgs registerArgs) {
         try {
-            UserDTO userDTO = service.register(registerArgs);
-            return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
+            UserInfoDTO userInfoDTO = service.register(registerArgs);
+            return new ResponseEntity<>(userInfoDTO, HttpStatus.CREATED);
         } catch (Exception ex) {
             if (ex instanceof BaseException) {
                 throw ex;
@@ -51,8 +50,8 @@ public class AuthController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> login(@Valid @RequestBody RqLoginArgs loginArgs) {
         try {
-            UserDTO userDTO = service.login(loginArgs);
-            return new ResponseEntity<>(userDTO, HttpStatus.OK);
+            UserInfoDTO userInfoDTO = service.login(loginArgs);
+            return new ResponseEntity<>(userInfoDTO, HttpStatus.OK);
         } catch (Exception ex) {
             if (ex instanceof BaseException) {
                 throw ex;
@@ -90,14 +89,29 @@ public class AuthController {
         }
     }
 
+    @GetMapping(path = "/forgot-password")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> forgotPassword(
+            @Valid @RequestBody RqForgotPasswordArgs forgotPasswordArgs) {
+        try {
+            UserDTO userDTO = service.forgotPassword(forgotPasswordArgs);
+            return new ResponseEntity<>(userDTO, HttpStatus.OK);
+        } catch (Exception ex) {
+            if (ex instanceof BaseException) {
+                throw ex;
+            }
+            throw new RestExceptions.InternalServerError(ex.getMessage());
+        }
+    }
+
     @PostMapping(path = "/update")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> update(
             @RequestHeader("Authorization") String authorizationHeader,
             @RequestBody RqUpdateArgs updateArgs) {
         try {
-            UserDTO userDTO = service.update(authorizationHeader, updateArgs);
-            return new ResponseEntity<>(userDTO, HttpStatus.OK);
+            UserInfoDTO userInfoDTO = service.update(authorizationHeader, updateArgs);
+            return new ResponseEntity<>(userInfoDTO, HttpStatus.OK);
         } catch (Exception ex) {
             if (ex instanceof BaseException) {
                 throw ex;
@@ -108,11 +122,11 @@ public class AuthController {
 
     @GetMapping(path = "/verify-auth")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<UserDTO> verifyAuth(
+    public ResponseEntity<UserInfoDTO> verifyAuth(
             @RequestHeader("Authorization") String authorizationHeader) {
         try {
-            UserDTO userDTO = service.getUserInformation(authorizationHeader);
-            return new ResponseEntity<>(userDTO, HttpStatus.OK);
+            UserInfoDTO userInfoDTO = service.getUserInformation(authorizationHeader);
+            return new ResponseEntity<>(userInfoDTO, HttpStatus.OK);
         } catch (Exception ex) {
             if (ex instanceof BaseException) {
                 throw ex;

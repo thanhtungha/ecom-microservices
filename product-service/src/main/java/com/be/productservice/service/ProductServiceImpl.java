@@ -141,19 +141,24 @@ public class ProductServiceImpl implements IProductService {
     public ListProducts getListProduct(String authorizationHeader,
                                        List<String> ids) {
         authClient.verifyToken(authorizationHeader);
-        List<UUID> uuidList = ids.stream()
-                .map(UUID::fromString)
-                .toList();
 
-        List<Product> storedModel = repository.findAllById(uuidList);
-        if (storedModel.isEmpty()) {
-            throw new RestExceptions.NotFound("Product does not existed!");
+        List<Product> storedModel;
+        if (!ids.isEmpty()) {
+            List<UUID> uuidList = ids.stream()
+                    .map(UUID::fromString)
+                    .toList();
+            storedModel = repository.findAllById(uuidList);
+        } else {
+            storedModel = repository.findAll();
         }
 
-        List<ProductDTO> productDTOList = storedModel.stream()
-                .map(mapper::ProductToDTO)
-                .toList();
+        if (!storedModel.isEmpty()) {
+            List<ProductDTO> productDTOList = storedModel.stream()
+                    .map(mapper::ProductToDTO)
+                    .toList();
 
-        return new ListProducts(productDTOList);
+            return new ListProducts(productDTOList);
+        }
+        return null;
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class ProductClient {
     private final WebClient.Builder webClientBuilder;
-    private static final String BASE_API = "http://localhost:8081/api/product";
+    private static final String BASE_API = "http://localhost:8080/api/product";
 
     public List<ProductDTO> getListProducts(String authorizationHeader,
                                             List<String> ids) {

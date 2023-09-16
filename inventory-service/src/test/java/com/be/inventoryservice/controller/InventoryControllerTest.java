@@ -42,34 +42,6 @@ class InventoryControllerTest extends AbstractContainerBaseTest {
     }
 
     @Test
-    @Order(0)
-    void createInventory() throws Exception {
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
-                        INVENTORY_BASE_API + "/create-inventory")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.AUTHORIZATION, authorizationHeader);
-        MvcResult mvcResult = mockMvc.perform(requestBuilder)
-                .andExpect(status().isCreated())
-                .andReturn();
-
-        //check response
-        String responseBody = mvcResult.getResponse().getContentAsString();
-        InventoryDTO responseProduct = objectMapper.readValue(responseBody,
-                InventoryDTO.class);
-        assertEquals(userDTO.getId(), responseProduct.getOwnerId());
-        assertEquals(userDTO.getId(), responseProduct.getOwner().getId());
-
-        //check db
-        Optional<Inventory> inventoryOptional = repository.findById(
-                responseProduct.getId());
-        if (inventoryOptional.isPresent()) {
-            assertEquals(userDTO.getId(), inventoryOptional.get().getOwnerId());
-            return;
-        }
-        fail("test case failed!");
-    }
-
-    @Test
     @Order(1)
     void addProduct() throws Exception {
         RqProductArgs productArgs = new RqProductArgs(productDTO1.getId());

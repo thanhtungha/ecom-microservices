@@ -165,6 +165,21 @@ class AuthControllerTest extends AbstractContainerBaseTest {
 
     @Test
     @Order(2)
+    void forgotPassword() throws Exception {
+        RqForgotPasswordArgs forgotPasswordArgs = new RqForgotPasswordArgs("controllerUser");
+        String reqString = objectMapper.writeValueAsString(forgotPasswordArgs);
+
+        RequestBuilder requestBuilder =
+                MockMvcRequestBuilders.get(BASE_API + "/forgot-password")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + getAccessToken())
+                        .content(reqString);
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @Order(2)
     void verifyAuth() throws Exception {
         RequestBuilder requestBuilder =
                 MockMvcRequestBuilders.get(BASE_API + "/verify-auth")

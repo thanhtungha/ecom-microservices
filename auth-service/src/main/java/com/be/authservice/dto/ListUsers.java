@@ -12,5 +12,5 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class ListUsers {
-    private List<UserDTO> users;
+    private List<UserInfoDTO> users;
 }

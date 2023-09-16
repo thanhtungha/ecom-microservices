@@ -34,22 +34,23 @@ public class SecurityConfig {
         http.exceptionHandling()
                 .authenticationEntryPoint(customAuthenticationEntryPoint)
                 .and()
-                .addFilterBefore(new AuthorizationTokenFilter(
-                                authenticationProvider),
+                .addFilterBefore(
+                        new AuthorizationTokenFilter(authenticationProvider),
                         BasicAuthenticationFilter.class)
                 .csrf()
                 .disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeHttpRequests((requests) -> requests.requestMatchers(
-                                HttpMethod.POST,
-                                "/api/auth/register",
-                                "/api/auth/login",
-                                "/api/auth/greeting")
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated());
+                .authorizeHttpRequests(
+                        (requests) -> requests.requestMatchers(HttpMethod.POST,
+                                        "/api/auth/register", "/api/auth/login")
+                                .permitAll()
+                                .requestMatchers(HttpMethod.GET,
+                                        "/api/auth/greeting")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated());
         return http.build();
     }
 
@@ -63,16 +64,14 @@ public class SecurityConfig {
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://localhost:3000");
         config.setAllowedHeaders(Arrays.asList(HttpHeaders.AUTHORIZATION,
-                HttpHeaders.CONTENT_TYPE,
-                HttpHeaders.ACCEPT));
-        config.setAllowedMethods(Arrays.asList(HttpMethod.GET.name(),
-                HttpMethod.POST.name(),
-                HttpMethod.PUT.name(),
-                HttpMethod.DELETE.name()));
+                HttpHeaders.CONTENT_TYPE, HttpHeaders.ACCEPT));
+        config.setAllowedMethods(
+                Arrays.asList(HttpMethod.GET.name(), HttpMethod.POST.name(),
+                        HttpMethod.PUT.name(), HttpMethod.DELETE.name()));
         config.setMaxAge(MAX_AGE);
         source.registerCorsConfiguration("/**", config);
-        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(
-                source));
+        FilterRegistrationBean bean = new FilterRegistrationBean(
+                new CorsFilter(source));
 
         bean.setOrder(CORS_FILTER_ORDER);
         return bean;

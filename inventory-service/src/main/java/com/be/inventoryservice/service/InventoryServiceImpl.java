@@ -52,7 +52,8 @@ public class InventoryServiceImpl implements IInventoryService {
         Optional<Inventory> storedModel = repository.findByOwnerId(
                 user.getId());
         if (storedModel.isEmpty()) {
-            throw new RestExceptions.NotFound("Inventory does not existed!");
+            createInventory(user);
+            storedModel = repository.findByOwnerId(user.getId());
         }
         Inventory inventory = storedModel.get();
         boolean isAdded = false;
