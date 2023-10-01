@@ -8,3 +8,8 @@ spring:
       ddl-auto: update
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+springdoc:
+  swagger-ui:
+    path: /api/auth/swagger-ui.html
+  api-docs:
+    path: /api/auth/v3/api-docs

@@ -47,7 +47,9 @@ public class SecurityConfig {
                                         "/api/auth/register", "/api/auth/login")
                                 .permitAll()
                                 .requestMatchers(HttpMethod.GET,
-                                        "/api/auth/greeting")
+                                        "/api/auth/greeting",
+                                        "/api/auth/swagger-ui/**",
+                                        "/api/auth/v3/api-docs/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated());

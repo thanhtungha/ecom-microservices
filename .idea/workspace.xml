@@ -6,11 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="94aeed82-866f-482a-b01a-a7c22818e2ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/repository/IAuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/repository/IAuthRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/webclient/ProductClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/java/com/be/cartservice/service/webclient/ProductClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/service/webclient/ProductClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/be/inventoryservice/service/webclient/ProductClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/service/webclient/ProductClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/be/orderservice/service/webclient/ProductClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/webclient/AuthClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/java/com/be/productservice/service/webclient/AuthClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/product-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +96,7 @@
       <recent name="com.be.cartservice" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.OrderServiceApplication">
+  <component name="RunManager" selected="Application.ProductServiceApplication">
     <configuration name="ApiGatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ecom.apigateway.ApiGatewayApplication" />
       <module name="api-gateway" />
