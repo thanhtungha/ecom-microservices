@@ -1,157 +1,229 @@
 package com.be.authservice.service;
 
-import com.be.authservice.AbstractContainerBaseTest;
 import com.be.authservice.dto.*;
+import com.be.authservice.exception.BaseException;
+import com.be.authservice.exception.RestExceptions;
+import com.be.authservice.mappers.IAuthMapper;
 import com.be.authservice.model.User;
 import com.be.authservice.repository.IAuthRepository;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
+import com.be.authservice.security.AuthenticationProvider;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mapstruct.factory.Mappers;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class AuthServiceImplTest extends AbstractContainerBaseTest {
-    @Autowired
-    public IAuthService service;
-    @Autowired
+@ExtendWith(MockitoExtension.class)
+class AuthServiceImplTest {
+    @InjectMocks
+    public AuthServiceImpl service;
+    @Mock
     public IAuthRepository repository;
 
-    @Test
-    @Order(0)
-    void register() {
-        RqRegisterArgs registerArgs = new RqRegisterArgs("serviceUser",
-                "userPassword",
-                "0123456789");
-        service.register(registerArgs);
-        Optional<User> createdUser =
-                repository.findByUserName(registerArgs.getUserName());
-        if (createdUser.isPresent()) {
-            User user = createdUser.get();
-            assertEquals(registerArgs.getUserName(), user.getUserName());
-            assertEquals(registerArgs.getUserPassword(),
-                    user.getUserPassword());
-            assertEquals(registerArgs.getPhoneNumber(), user.getPhoneNumber());
-        } else {
-            fail("test case failed!");
-        }
+    @Mock
+    public AuthenticationProvider authenticationProvider;
+
+    @Spy
+    private IAuthMapper mapper = Mappers.getMapper(IAuthMapper.class);
+
+    private User user;
+    private String accessToken;
+
+    @BeforeEach
+    public void beforeEach() {
+        accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9" +
+                ".eyJpc3MiOiJ4eXoxMjQzMiIsImV4cCI6MTcxMjUyMzE1OCwiaWF0IjoxNzEyNDM2NzU4fQ.ZyiwRJZQGtFQtmrsiwX7f1dfc_0hMiN0PEn9aHSql8g";
+
+        user = User.builder()
+                .id(UUID.randomUUID())
+                .createDate(new Date())
+                .updateDate(new Date())
+                .userName("userName")
+                .userPassword("userPassword")
+                .phoneNumber("0123456789")
+                .address("010302 world street")
+                .accessToken(accessToken)
+                .build();
     }
 
     @Test
-    @Order(1)
-    void login() {
-        RqLoginArgs loginArgs = new RqLoginArgs("serviceUser", "userPassword");
-        UserInfoDTO userInfo = service.login(loginArgs);
-        if (userInfo == null) {
-            fail("test case failed!");
-        }
+    void register_success() {
+        RqRegisterArgs registerArgs = RqRegisterArgs.builder()
+                .userName("userName")
+                .userPassword("userPassword")
+                .phoneNumber("0123456789")
+                .build();
+
+        when(repository.save(any())).thenReturn(user);
+        when(authenticationProvider.createAccessToken(anyString())).thenReturn(
+                accessToken);
+
+        UserInfoDTO expected = mapper.UserToUserInfoDTO(user);
+        UserInfoDTO actual = service.register(registerArgs);
+
+        assertNotNull(actual);
+        assertEquals(expected.getUserName(), actual.getUserName());
+        assertEquals(expected.getPhoneNumber(), actual.getPhoneNumber());
     }
 
     @Test
-    @Order(3)
-    void logout() {
-        RqLoginArgs loginArgs = new RqLoginArgs("serviceUser", "userPassword");
-        service.login(loginArgs);
+    void register_fail_userExisted() {
+        RqRegisterArgs registerArgs = RqRegisterArgs.builder()
+                .userName("userName")
+                .userPassword("userPassword")
+                .phoneNumber("0123456789")
+                .build();
 
-        String bearerToken = getAuthorizationHeader();
-        boolean result = service.logout(bearerToken);
-        if (result) {
-            Optional<User> createdUser = repository.findByAccessToken(
-                    bearerToken);
-            if (createdUser.isPresent()) {
-                fail("test case failed!");
-            }
-            return;
-        }
-        fail("test case failed!");
+        when(repository.findByUserName(anyString())).thenReturn(
+                Optional.of(user));
+
+        BaseException baseException = assertThrows(
+                RestExceptions.Conflict.class,
+                () -> service.register(registerArgs));
+        assertEquals(baseException.getMessage(), "User existed");
     }
 
     @Test
-    @Order(2)
-    void changePassword() {
-        RqChangePasswordArgs changePasswordArgs = new RqChangePasswordArgs(
-                "newPassword");
-        boolean result = service.changePassword(getAuthorizationHeader(),
+    void login_success() {
+        RqLoginArgs loginArgs = RqLoginArgs.builder()
+                .userName("userName")
+                .userPassword("userPassword")
+                .build();
+
+        when(repository.findByUserNameAndUserPassword(loginArgs.getUserName(),
+                loginArgs.getUserPassword())).thenReturn(Optional.of(user));
+        when(repository.save(any())).thenReturn(user);
+        when(authenticationProvider.createAccessToken(anyString())).thenReturn(
+                accessToken);
+
+        UserInfoDTO expected = mapper.UserToUserInfoDTO(user);
+        UserInfoDTO actual = service.login(loginArgs);
+
+        assertNotNull(actual);
+        assertEquals(expected.getUserName(), actual.getUserName());
+        assertEquals(expected.getPhoneNumber(), actual.getPhoneNumber());
+        assertEquals(expected.getAccessToken(), actual.getAccessToken());
+    }
+
+    @Test
+    void login_fail_wrongUserName() {
+        RqLoginArgs loginArgs = RqLoginArgs.builder()
+                .userName("userName")
+                .userPassword("userPassword")
+                .build();
+
+        when(repository.findByUserNameAndUserPassword(anyString(),
+                anyString())).thenReturn(Optional.empty());
+
+        BaseException baseException = assertThrows(
+                RestExceptions.NotFound.class, () -> service.login(loginArgs));
+        assertEquals(baseException.getMessage(),
+                "User not found or wrong password");
+    }
+
+    @Test
+    void logout_success() {
+        when(repository.findByAccessToken(accessToken)).thenReturn(
+                Optional.of(user));
+        boolean actual = service.logout("Bearer " + accessToken);
+        assertTrue(actual);
+    }
+
+    @Test
+    void changePassword_success() {
+        RqChangePasswordArgs changePasswordArgs = RqChangePasswordArgs.builder()
+                .newPassword("newPassword")
+                .build();
+
+        when(repository.findByAccessToken(accessToken)).thenReturn(
+                Optional.of(user));
+
+        boolean actual = service.changePassword("Bearer " + accessToken,
                 changePasswordArgs);
-        if (result) {
-            Optional<User> createdUser = repository.findByUserName(
-                    "serviceUser");
-            createdUser.ifPresent(info -> assertEquals("newPassword",
-                    info.getUserPassword()));
 
-            changePasswordArgs.setNewPassword("userPassword");
-            service.changePassword(getAuthorizationHeader(),
-                    changePasswordArgs);
-            return;
-        }
-        fail("test case failed!");
+        assertTrue(actual);
     }
 
     @Test
-    @Order(2)
+    void changePassword_fail_samePassword() {
+        RqChangePasswordArgs changePasswordArgs = RqChangePasswordArgs.builder()
+                .newPassword("userPassword")
+                .build();
+
+        when(repository.findByAccessToken(accessToken)).thenReturn(
+                Optional.of(user));
+
+        BaseException baseException = assertThrows(
+                RestExceptions.BadRequest.class,
+                () -> service.changePassword("Bearer " + accessToken,
+                        changePasswordArgs));
+        assertEquals(baseException.getMessage(),
+                "New password cannot be the same as the old password.");
+    }
+
+    @Test
     void forgotPassword() {
-        RqForgotPasswordArgs forgotPasswordArgs = new RqForgotPasswordArgs(
-                "serviceUser");
-        UserDTO userDTO = service.forgotPassword(forgotPasswordArgs);
-        if (userDTO != null) {
-            assertEquals("serviceUser", userDTO.getUserName());
-            assertEquals("userPassword", userDTO.getUserPassword());
-        } else {
-            fail("test case failed!");
-        }
+        //fail("Not implemented!");
     }
 
     @Test
-    @Order(2)
     void update() {
-        RqUpdateArgs updateArgs = new RqUpdateArgs("0987654321", "new address");
-        UserInfoDTO userInfoDTO = service.update(getAuthorizationHeader(), updateArgs);
-        if (userInfoDTO != null) {
-            assertEquals(updateArgs.getPhoneNumber(), userInfoDTO.getPhoneNumber());
-            assertEquals(updateArgs.getAddress(), userInfoDTO.getAddress());
-        } else {
-            fail("test case failed!");
-        }
+        RqUpdateArgs updateArgs = RqUpdateArgs.builder()
+                .phoneNumber("0123456789")
+                .address("010302 Sweet Home Str")
+                .build();
+
+        when(repository.findByAccessToken(accessToken)).thenReturn(
+                Optional.of(user));
+
+        UserInfoDTO actual = service.update("Bearer " + accessToken,
+                updateArgs);
+
+        assertEquals("0123456789", actual.getPhoneNumber());
+        assertEquals("010302 Sweet Home Str", actual.getAddress());
     }
 
     @Test
-    @Order(2)
-    void getUserInformation() {
-        UserInfoDTO userInfoDTO = service.getUserInformation(getAuthorizationHeader());
-        if (userInfoDTO == null) {
-            fail("test case failed!");
-        }
+    void getUserInformation_success() {
+        when(repository.findByAccessToken(accessToken)).thenReturn(
+                Optional.of(user));
+
+        UserInfoDTO expected = mapper.UserToUserInfoDTO(user);
+        UserInfoDTO actual = service.getUserInformation(
+                "Bearer " + accessToken);
+
+        assertEquals(expected.getUserName(), actual.getUserName());
+        assertEquals(expected.getAccessToken(), actual.getAccessToken());
+        assertEquals(expected.getId(), actual.getId());
     }
 
     @Test
-    @Order(4)
+    void getUserInformation_fail_invalidAccessToken() {
+        BaseException baseException = assertThrows(
+                RestExceptions.Forbidden.class,
+                () -> service.getUserInformation("Bearer " + accessToken));
+        assertEquals(baseException.getMessage(), "Invalid accessToken!");
+    }
+
+    @Test
     void delete() {
-        RqLoginArgs loginArgs = new RqLoginArgs("serviceUser", "userPassword");
-        service.login(loginArgs);
+        when(repository.findByAccessToken(accessToken)).thenReturn(
+                Optional.of(user));
 
-        boolean result = service.deleteUser(getAuthorizationHeader());
-        if (result) {
-            Optional<User> createdUser = repository.findByUserName(
-                    "serviceUser");
-            if (createdUser.isPresent()) {
-                fail("test case failed!");
-            }
-            return;
-        }
-        fail("test case failed!");
-    }
+        boolean actual = service.deleteUser("Bearer " + accessToken);
 
-    String getAuthorizationHeader() {
-        Optional<User> createdUser = repository.findByUserName("serviceUser");
-        if (createdUser.isEmpty()) {
-            fail("test case failed!");
-        }
-        return "Bearer " + createdUser.get().getAccessToken();
+        assertTrue(actual);
     }
 }

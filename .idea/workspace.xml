@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="94aeed82-866f-482a-b01a-a7c22818e2ed" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/AbstractContainerBaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice/AbstractContainerBaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory-service/src/test/java/com/be/inventoryservice/AbstractContainerBaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/test/java/com/be/inventoryservice/AbstractContainerBaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/repository/IAuthRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/repository/IAuthRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice/service/AuthServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-service/src/test/java/com/be/authservice/service/AuthServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,22 +43,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
-    &quot;last_directory_selection&quot;: &quot;/Users/hathanhtung/Documents/GitHub/ecom-microservices/auth-service/src/test/java/com/be&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/hathanhtung/Documents/GitHub/ecom-microservices/inventory-service/src/test&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "last_directory_selection": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/auth-service/src/test/java/com/be",
+    "last_opened_file_path": "/Users/hathanhtung/Documents/GitHub/ecom-microservices/inventory-service/src/test",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/inventory-service/src/test" />
@@ -72,11 +74,11 @@
       <recent name="com.be.authservice" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.be.authservice.security" />
       <recent name="com.be.inventoryservice.controller" />
       <recent name="com.be.inventoryservice.service" />
       <recent name="com.be.cartservice.controller" />
       <recent name="com.be.cartservice.service" />
-      <recent name="com.be.orderservice.controller" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.be.authservice.dto" />
@@ -86,51 +88,82 @@
       <recent name="com.be.cartservice" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.productservice in product-service">
-    <configuration name="CartControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="cart-service" />
+  <component name="RunManager" selected="JUnit.AuthServiceImplTest">
+    <configuration name="AuthServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="auth-service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.be.cartservice.controller.*" />
+          <option name="PATTERN" value="com.be.authservice.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.be.cartservice.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.be.cartservice.controller.CartControllerTest" />
+      <option name="PACKAGE_NAME" value="com.be.authservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.be.authservice.service.AuthServiceImplTest" />
       <option name="TEST_OBJECT" value="class" />
-      <dir value="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="cartservice in cart-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="cart-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/cart-service/src/test/java/com/be/cartservice" />
+    <configuration name="AuthServiceImplTest.changePassword_success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="auth-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.be.authservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.be.authservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.be.authservice.service.AuthServiceImplTest" />
+      <option name="METHOD_NAME" value="changePassword_success" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="inventoryservice in inventory-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="inventory-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/inventory-service/src/test/java/com/be/inventoryservice" />
+    <configuration name="AuthServiceImplTest.delete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="auth-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.be.authservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.be.authservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.be.authservice.service.AuthServiceImplTest" />
+      <option name="METHOD_NAME" value="delete" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="orderservice in order-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="order-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/order-service/src/test/java/com/be/orderservice" />
+    <configuration name="AuthServiceImplTest.getUserInformation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="auth-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.be.authservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.be.authservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.be.authservice.service.AuthServiceImplTest" />
+      <option name="METHOD_NAME" value="getUserInformation" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="productservice in product-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="product-service" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/product-service/src/test/java/com/be/productservice" />
+    <configuration name="AuthServiceImplTest.update" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="auth-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.be.authservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.be.authservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.be.authservice.service.AuthServiceImplTest" />
+      <option name="METHOD_NAME" value="update" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -154,19 +187,19 @@
       <item itemvalue="Application.InventoryServiceApplication" />
       <item itemvalue="Application.OrderServiceApplication" />
       <item itemvalue="Application.ProductServiceApplication" />
-      <item itemvalue="JUnit.CartControllerTest" />
-      <item itemvalue="JUnit.cartservice in cart-service" />
-      <item itemvalue="JUnit.inventoryservice in inventory-service" />
-      <item itemvalue="JUnit.orderservice in order-service" />
-      <item itemvalue="JUnit.productservice in product-service" />
+      <item itemvalue="JUnit.AuthServiceImplTest" />
+      <item itemvalue="JUnit.AuthServiceImplTest.changePassword_success" />
+      <item itemvalue="JUnit.AuthServiceImplTest.delete" />
+      <item itemvalue="JUnit.AuthServiceImplTest.getUserInformation" />
+      <item itemvalue="JUnit.AuthServiceImplTest.update" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.productservice in product-service" />
-        <item itemvalue="JUnit.orderservice in order-service" />
-        <item itemvalue="JUnit.cartservice in cart-service" />
-        <item itemvalue="JUnit.inventoryservice in inventory-service" />
-        <item itemvalue="JUnit.CartControllerTest" />
+        <item itemvalue="JUnit.AuthServiceImplTest" />
+        <item itemvalue="JUnit.AuthServiceImplTest.delete" />
+        <item itemvalue="JUnit.AuthServiceImplTest.getUserInformation" />
+        <item itemvalue="JUnit.AuthServiceImplTest.update" />
+        <item itemvalue="JUnit.AuthServiceImplTest.changePassword_success" />
       </list>
     </recent_temporary>
   </component>

@@ -10,7 +10,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -39,10 +42,9 @@ public class AuthServiceImpl implements IAuthService {
     @Override
     public UserInfoDTO login(RqLoginArgs loginArgs) {
         Optional<User> storedModel =
-                repository.findByUserName(loginArgs.getUserName());
-        if (storedModel.isPresent() && storedModel.get()
-                .getUserPassword()
-                .equals(loginArgs.getUserPassword())) {
+                repository.findByUserNameAndUserPassword(loginArgs.getUserName(),
+                        loginArgs.getUserPassword());
+        if (storedModel.isPresent()) {
             User user = storedModel.get();
             user.setAccessToken(authenticationProvider.createAccessToken(user.getUserName()));
             user.setUpdateDate(new Date());
