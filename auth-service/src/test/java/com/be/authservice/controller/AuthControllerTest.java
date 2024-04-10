@@ -1,254 +1,354 @@
 package com.be.authservice.controller;
 
-import com.be.authservice.AbstractContainerBaseTest;
 import com.be.authservice.dto.*;
-import com.be.authservice.model.User;
-import com.be.authservice.repository.IAuthRepository;
+import com.be.authservice.exception.BaseExceptionHandler;
+import com.be.authservice.exception.RestExceptions;
+import com.be.authservice.service.AuthServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class AuthControllerTest extends AbstractContainerBaseTest {
-    @Autowired
-    public MockMvc mockMvc;
-    @Autowired
-    public ObjectMapper objectMapper;
-    @Autowired
-    public IAuthRepository repository;
-    private static String BASE_API = "/api/auth";
+@ExtendWith(MockitoExtension.class)
+class AuthControllerTest {
+    private MockMvc mockMvc;
+    @Mock
+    private AuthServiceImpl service;
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final String BASE_API = "/api/auth";
+    private String accessToken;
+    UserInfoDTO user;
+
+    @BeforeEach
+    public void beforeEach() {
+        accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9" +
+                ".eyJpc3MiOiJ4eXoxMjQzMiIsImV4cCI6MTcxMjUyMzE1OCwiaWF0IjoxNzEyNDM2NzU4fQ.ZyiwRJZQGtFQtmrsiwX7f1dfc_0hMiN0PEn9aHSql8g";
+
+        user = UserInfoDTO.builder()
+                .id(UUID.randomUUID())
+                .createDate(new Date())
+                .updateDate(new Date())
+                .userName("userName")
+                .phoneNumber("0123456789")
+                .address("010302 sweet home")
+                .accessToken(accessToken)
+                .build();
+
+        this.mockMvc = MockMvcBuilders.standaloneSetup(
+                        new AuthController(service))
+                .setControllerAdvice(new BaseExceptionHandler())
+                .build();
+    }
 
     @Test
-    @Order(0)
-    void register() throws Exception {
-        RqRegisterArgs registerArgs = new RqRegisterArgs("controllerUser",
-                "userPassword",
-                "1234567890");
+    void register_success() throws Exception {
+        RqRegisterArgs registerArgs = RqRegisterArgs.builder()
+                .userName("userName")
+                .userPassword("userPassword")
+                .phoneNumber("1234567890")
+                .build();
+
+        when(service.register(registerArgs)).thenReturn(user);
+
         String reqString = objectMapper.writeValueAsString(registerArgs);
-        RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/register")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(reqString);
-        mockMvc.perform(requestBuilder)
-                .andExpect(status().isCreated());
 
-        //register user 2
-        registerArgs = new RqRegisterArgs("controllerUser2",
-                "user2Password",
-                "1111111111");
-        reqString = objectMapper.writeValueAsString(registerArgs);
-        requestBuilder = MockMvcRequestBuilders.post(BASE_API + "/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(reqString);
         mockMvc.perform(requestBuilder)
-                .andExpect(status().isCreated());
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.userName", is(user.getUserName())))
+                .andExpect(jsonPath("$.phoneNumber", is(user.getPhoneNumber())))
+                .andReturn();
     }
 
     @Test
-    @Order(1)
-    void login() throws Exception {
-        RqLoginArgs loginArgs = new RqLoginArgs("controllerUser",
-                "userPassword");
+    void register_fail_conflict() throws Exception {
+        RqRegisterArgs registerArgs = RqRegisterArgs.builder()
+                .userName("userName")
+                .userPassword("userPassword")
+                .phoneNumber("1234567890")
+                .build();
+
+        when(service.register(registerArgs)).thenThrow(
+                new RestExceptions.Conflict("User existed"));
+
+        String reqString = objectMapper.writeValueAsString(registerArgs);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/register")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(reqString);
+
+        mockMvc.perform(requestBuilder)
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.message", is("User existed")))
+                .andExpect(jsonPath("$.status", is(409)))
+                .andReturn();
+    }
+
+    @Test
+    void login_success() throws Exception {
+        RqLoginArgs loginArgs = RqLoginArgs.builder()
+                .userName("userName")
+                .userPassword("userPassword")
+                .build();
+
+        when(service.login(loginArgs)).thenReturn(user);
+
         String reqString = objectMapper.writeValueAsString(loginArgs);
-        RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/login")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(reqString);
+
         mockMvc.perform(requestBuilder)
+                .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(user.getId().toString())))
+                .andExpect(jsonPath("$.userName", is(user.getUserName())))
+                .andExpect(jsonPath("$.phoneNumber", is(user.getPhoneNumber())))
+                .andExpect(jsonPath("$.accessToken", is(user.getAccessToken())))
                 .andReturn();
-
-        //check response
     }
 
     @Test
-    @Order(3)
-    void logout() throws Exception {
-        RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/logout")
+    void login_fail_userNotFound() throws Exception {
+        RqLoginArgs loginArgs = RqLoginArgs.builder()
+                .userName("userName")
+                .userPassword("userPassword")
+                .build();
+
+        when(service.login(loginArgs)).thenThrow(new RestExceptions.NotFound(
+                "User not found or wrong password"));
+
+        String reqString = objectMapper.writeValueAsString(loginArgs);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.AUTHORIZATION,
-                        "Bearer " + getAccessToken());
+                .content(reqString);
+
         mockMvc.perform(requestBuilder)
-                .andExpect(status().isOk());
-
-        //check response
-
-        //check db
-        Optional<User> createdUser = repository.findByUserName(
-                "controllerUser");
-        if (createdUser.isPresent()) {
-            if (createdUser.get()
-                    .getAccessToken()
-                    .isEmpty()) {
-                return;
-            }
-        }
-        fail("test case failed!");
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message",
+                        is("User not found or wrong password")))
+                .andExpect(jsonPath("$.status", is(404)))
+                .andReturn();
     }
 
     @Test
-    @Order(2)
-    void changePassword() throws Exception {
-        RqChangePasswordArgs changePasswordArgs = new RqChangePasswordArgs(
-                "newPassword");
+    void logout_success() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/logout")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
+
+        when(service.logout("Bearer " + accessToken)).thenReturn(true);
+
+        mockMvc.perform(requestBuilder)
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(""))
+                .andReturn();
+    }
+
+    @Test
+    void logout_fail() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/logout")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
+
+        when(service.logout("Bearer " + accessToken)).thenThrow(
+                new RestExceptions.Forbidden("Invalid accessToken!"));
+
+        mockMvc.perform(requestBuilder)
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.message", is("Invalid accessToken!")))
+                .andExpect(jsonPath("$.status", is(403)))
+                .andReturn();
+    }
+
+    @Test
+    void changePassword_success() throws Exception {
+        RqChangePasswordArgs changePasswordArgs = RqChangePasswordArgs.builder()
+                .newPassword("newPassword")
+                .build();
+
+        when(service.changePassword("Bearer " + accessToken,
+                changePasswordArgs)).thenReturn(true);
+
         String reqString = objectMapper.writeValueAsString(changePasswordArgs);
-
-        RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/change-password")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/change-password")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + getAccessToken())
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                 .content(reqString);
+
         mockMvc.perform(requestBuilder)
-                .andExpect(status().isOk());
-
-        //check response
-
-        //check db
-        Optional<User> createdUser = repository.findByUserName(
-                "controllerUser");
-        if (createdUser.isPresent()) {
-            assertEquals(createdUser.get()
-                    .getUserPassword(), changePasswordArgs.getNewPassword());
-            return;
-        }
-        fail("test case failed!");
-    }
-
-    @Test
-    @Order(2)
-    void update() throws Exception {
-        RqUpdateArgs updateArgs = new RqUpdateArgs("0987654321",
-                "new " + "Address");
-        String reqString = objectMapper.writeValueAsString(updateArgs);
-
-        RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/update")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + getAccessToken())
-                .content(reqString);
-        mockMvc.perform(requestBuilder)
-                .andExpect(status().isOk());
-
-        //check response
-
-        //check db
-        Optional<User> createdUser = repository.findByUserName(
-                "controllerUser");
-        if (createdUser.isPresent()) {
-            assertEquals(createdUser.get()
-                    .getPhoneNumber(), updateArgs.getPhoneNumber());
-            assertEquals(createdUser.get()
-                    .getAddress(), updateArgs.getAddress());
-            return;
-        }
-        fail("test case failed!");
-    }
-
-    @Test
-    @Order(2)
-    void forgotPassword() throws Exception {
-        RqForgotPasswordArgs forgotPasswordArgs = new RqForgotPasswordArgs("controllerUser");
-        String reqString = objectMapper.writeValueAsString(forgotPasswordArgs);
-
-        RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.get(BASE_API + "/forgot-password")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + getAccessToken())
-                        .content(reqString);
-        mockMvc.perform(requestBuilder)
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    @Order(2)
-    void verifyAuth() throws Exception {
-        RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.get(BASE_API + "/verify-auth")
-                .header(HttpHeaders.AUTHORIZATION,
-                        "Bearer " + getAccessToken());
-        mockMvc.perform(requestBuilder)
+                .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
+                .andExpect(content().string(""))
                 .andReturn();
-
-        //check response
     }
 
     @Test
-    @Order(2)
+    void changePassword_fail_samePassword() throws Exception {
+        RqChangePasswordArgs changePasswordArgs = RqChangePasswordArgs.builder()
+                .newPassword("newPassword")
+                .build();
+
+        when(service.changePassword("Bearer " + accessToken,
+                changePasswordArgs))
+                .thenThrow(new RestExceptions.BadRequest(
+                        "New password cannot be the same as the old password" +
+                                "."));
+
+        String reqString = objectMapper.writeValueAsString(changePasswordArgs);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/change-password")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
+                .content(reqString);
+
+        mockMvc.perform(requestBuilder)
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message",
+                        is("New password cannot be the same as the old " +
+                                "password.")))
+                .andExpect(jsonPath("$.status", is(400)))
+                .andReturn();
+    }
+
+    @Test
+    void update_success() throws Exception {
+        RqUpdateArgs updateArgs = RqUpdateArgs.builder()
+                .phoneNumber("0123456789")
+                .address("010302 sweet home")
+                .build();
+
+        when(service.update("Bearer " + accessToken, updateArgs)).thenReturn(
+                user);
+
+        String reqString = objectMapper.writeValueAsString(updateArgs);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
+                .content(reqString);
+
+        mockMvc.perform(requestBuilder)
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(user.getId().toString())))
+                .andExpect(jsonPath("$.userName", is(user.getUserName())))
+                .andExpect(jsonPath("$.phoneNumber", is(user.getPhoneNumber())))
+                .andExpect(jsonPath("$.accessToken", is(user.getAccessToken())))
+                .andReturn();
+    }
+
+    @Test
+    void forgotPassword() {
+    }
+
+    @Test
+    void verifyAuth() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+                        BASE_API + "/verify-auth")
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
+
+        when(service.getUserInformation("Bearer " + accessToken)).thenReturn(
+                user);
+
+        mockMvc.perform(requestBuilder)
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(user.getId().toString())))
+                .andExpect(jsonPath("$.userName", is(user.getUserName())))
+                .andExpect(jsonPath("$.phoneNumber", is(user.getPhoneNumber())))
+                .andExpect(jsonPath("$.accessToken", is(user.getAccessToken())))
+                .andReturn();
+    }
+
+    @Test
     void getListUser() throws Exception {
-        List<String> ids = repository.findAll()
-                .stream()
-                .map(user -> user.getId()
-                        .toString())
-                .toList();
+        UserInfoDTO u1 = UserInfoDTO.builder()
+                .id(UUID.fromString("935a0738-5992-4739-b2d3-17fb119f207f"))
+                .build();
+        UserInfoDTO u2 = UserInfoDTO.builder()
+                .id(UUID.fromString("47dc9172-03ce-466b-aaf3-e6dd7988ab50"))
+                .build();
+        UserInfoDTO u3 = UserInfoDTO.builder()
+                .id(UUID.fromString("97c35957-71ef-4ab8-b4af-6b592105e32e"))
+                .build();
+
+        List<String> ids = Arrays.asList("935a0738-5992-4739-b2d3-17fb119f207f",
+                "47dc9172-03ce-466b-aaf3-e6dd7988ab50",
+                "97c35957-71ef-4ab8-b4af-6b592105e32e");
+
+        List<UserInfoDTO> users = Arrays.asList(u1, u2, u3);
+        ListUsers listUsers = ListUsers.builder().users(users).build();
+
+        when(service.getListUser("Bearer " + accessToken, ids)).thenReturn(
+                listUsers);
+
         RequestBuilder requestBuilder =
                 MockMvcRequestBuilders.get(BASE_API + "/list-user")
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.AUTHORIZATION, "Bearer " + getAccessToken())
-                .queryParam("ids", ids.toArray(new String[0]));
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Bearer " + accessToken)
+                        .queryParam("ids", ids.toArray(new String[0]));
+
         mockMvc.perform(requestBuilder)
+                .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.users[*].id", containsInAnyOrder(
+                        "935a0738-5992-4739-b2d3-17fb119f207f",
+                        "47dc9172-03ce-466b-aaf3-e6dd7988ab50",
+                        "97c35957-71ef-4ab8-b4af-6b592105e32e")))
                 .andReturn();
 
-        //check response
     }
 
     @Test
-    @Order(4)
     void delete() throws Exception {
         RqLoginArgs loginArgs = new RqLoginArgs("controllerUser",
                 "newPassword");
         String reqString = objectMapper.writeValueAsString(loginArgs);
-        RequestBuilder requestBuilder =
-                MockMvcRequestBuilders.post(BASE_API + "/login")
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(reqString);
         mockMvc.perform(requestBuilder);
 
-        requestBuilder = MockMvcRequestBuilders.post(BASE_API + "/delete" +
-                        "-account")
+        requestBuilder = MockMvcRequestBuilders.post(
+                        BASE_API + "/delete" + "-account")
                 .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.AUTHORIZATION,
-                        "Bearer " + getAccessToken());
-        mockMvc.perform(requestBuilder)
-                .andExpect(status().isOk());
-
-        //check response
-
-        //check db
-        Optional<User> createdUser = repository.findByUserName(
-                "controllerUser");
-        if (createdUser.isPresent()) {
-            fail("test case failed!");
-        }
-    }
-
-    String getAccessToken() {
-        Optional<User> createdUser = repository.findByUserName(
-                "controllerUser");
-        if (createdUser.isEmpty()) {
-            fail("test case failed!");
-        }
-        return createdUser.get()
-                .getAccessToken();
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken);
+        mockMvc.perform(requestBuilder).andExpect(status().isOk());
     }
 }

@@ -4,11 +4,11 @@ import com.be.authservice.dto.*;
 import com.be.authservice.exception.BaseException;
 import com.be.authservice.exception.RestExceptions;
 import com.be.authservice.service.IAuthService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +21,7 @@ import java.util.List;
 public class AuthController {
     private static final Logger logger = LoggerFactory.getLogger(
             AuthController.class);
+    @Autowired
     private final IAuthService service;
 
     @GetMapping(path = "/greeting")
