@@ -3,11 +3,11 @@
     <envs>
       <env name="--spring.profiles.active" value="local" />
     </envs>
-    <option name="MAIN_CLASS_NAME" value="com.be.authservice.AuthServiceApplication" />
-    <module name="auth-service" />
+    <option name="MAIN_CLASS_NAME" value="com.be.iamservice.AuthServiceApplication" />
+    <module name="iam-service" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.be.authservice.*" />
+        <option name="PATTERN" value="com.be.iamservice.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

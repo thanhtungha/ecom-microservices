@@ -22,6 +22,7 @@
         <module>inventory-service</module>
         <module>discovery-server</module>
         <module>api-gateway</module>
+        <module>iam-service</module>
     </modules>
 
     <properties>
