@@ -1,39 +1,6 @@
 spring:
   application:
     name: api-gateway
-  cloud:
-    gateway:
-      #Auth Service
-      routes[0]:
-        id: auth-service
-        uri: lb://auth-service
-        predicates[0]:
-          Path=/api/auth/**
-      #Cart Service
-      routes[1]:
-        id: cart-service
-        uri: lb://cart-service
-        predicates[0]:
-          Path=/api/cart/**
-      #Inventory Service
-      routes[2]:
-        id: inventory-service
-        uri: lb://inventory-service
-        predicates[0]:
-          Path=/api/inventory/**
-      #Order Service
-      routes[3]:
-        id: order-service
-        uri: lb://order-service
-        predicates[0]:
-          Path=/api/order/**
-      #Product Service
-      routes[4]:
-        id: product-service
-        uri: lb://product-service
-        predicates[0]:
-          Path=/api/product/**
-
 logging:
   level:
     root: INFO
@@ -41,3 +8,7 @@ logging:
       springframework:cloud:
         gateway:route:RouteDefinitionLocator: INFO
         gateway: TRACE
+eureka:
+  client:
+    serverUrl:
+      defaultZone: http://localhost:8761/eureka
