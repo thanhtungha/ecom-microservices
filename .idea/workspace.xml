@@ -4,19 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94aeed82-866f-482a-b01a-a7c22818e2ed" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/ecom/apigateway/config/GatewayConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-gateway/src/main/java/com/ecom/apigateway/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/AuthServiceApplication.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/AuthServiceApplication.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="94aeed82-866f-482a-b01a-a7c22818e2ed" name="Changes" comment="[add] AuthenticationProvider">
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/dto/BaseResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/exception/BaseException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/exception/BaseExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/exception/RestExceptions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/model/Authority.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/model/UserInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/repository/AccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/security/AuthorizationTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/security/CustomAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/security/TokenProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/service/impl/CustomUserDetailsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application-local.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application-product.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam-service/src/main/java/com/be/authservice/IAMServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/IAMServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam-service/src/main/resources/application-product.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/iam-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,12 +31,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit5 Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/iam-service" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -59,20 +64,20 @@
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
     &quot;last_directory_selection&quot;: &quot;/Users/hathanhtung/Documents/GitHub/ecom-microservices/auth-service/src/test/java/com/be&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/hathanhtung/Documents/GitHub/ecom-microservices&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/hathanhtung/Documents/GitHub/ecom-microservices/iam-service/src/main/java/com/be/iamservice/exception&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Java&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/exception" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/inventory-service/src/test" />
       <recent name="$PROJECT_DIR$/auth-service/src/main/java/com/be/authservice/service" />
       <recent name="$PROJECT_DIR$/auth-service/src/main/resources" />
-      <recent name="$PROJECT_DIR$/cart-service/src/main/resources" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -88,20 +93,33 @@
       <recent name="com.be.cartservice.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.be.iamservice.dto" />
+      <recent name="com.be.iamservice.security" />
       <recent name="com.be.authservice.dto" />
       <recent name="com.be.inventoryservice" />
       <recent name="com.be.inventoryservice.dto" />
-      <recent name="com.be.inventoryservice.model" />
-      <recent name="com.be.cartservice" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.IAMServiceApplication">
+  <component name="RunManager" selected="Application.com.be.iamservice.IAMServiceApplication">
     <configuration name="IAMServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.be.authservice.IAMServiceApplication" />
       <module name="iam-service" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.be.authservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.be.iamservice.IAMServiceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.be.iamservice.IAMServiceApplication" />
+      <module name="iam-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.be.iamservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -156,22 +174,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthServiceImplTest.update" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="iam-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.be.iamservice.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.be.authservice.service" />
-      <option name="MAIN_CLASS_NAME" value="com.be.iamservice.service.AuthServiceImplTest" />
-      <option name="METHOD_NAME" value="update" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ecom-microservices" />
       <method v="2">
@@ -191,19 +193,19 @@
       <item itemvalue="Application.InventoryServiceApplication" />
       <item itemvalue="Application.OrderServiceApplication" />
       <item itemvalue="Application.ProductServiceApplication" />
+      <item itemvalue="Application.com.be.iamservice.IAMServiceApplication" />
       <item itemvalue="Application.IAMServiceApplication" />
       <item itemvalue="JUnit.AuthServiceImplTest" />
       <item itemvalue="JUnit.AuthServiceImplTest.delete" />
       <item itemvalue="JUnit.AuthServiceImplTest.getUserInformation" />
-      <item itemvalue="JUnit.AuthServiceImplTest.update" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.com.be.iamservice.IAMServiceApplication" />
         <item itemvalue="Application.IAMServiceApplication" />
         <item itemvalue="JUnit.AuthServiceImplTest" />
         <item itemvalue="JUnit.AuthServiceImplTest.delete" />
         <item itemvalue="JUnit.AuthServiceImplTest.getUserInformation" />
-        <item itemvalue="JUnit.AuthServiceImplTest.update" />
       </list>
     </recent_temporary>
   </component>
@@ -216,6 +218,28 @@
       <option name="presentableId" value="Default" />
       <updated>1691101497778</updated>
     </task>
+    <task id="LOCAL-00001" summary="[mod] implement gateway config">
+      <created>1713770956011</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713770956011</updated>
+    </task>
+    <task id="LOCAL-00002" summary="[mod] ignore idea folder">
+      <created>1713771016009</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713771016009</updated>
+    </task>
+    <task id="LOCAL-00003" summary="[mod] remove cors in auth service">
+      <created>1713772123054</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1713772123054</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -228,6 +252,12 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[mod] implement gateway config" />
+    <MESSAGE value="[mod] ignore idea folder" />
+    <MESSAGE value="[mod] remove cors in auth service" />
+    <option name="LAST_COMMIT_MESSAGE" value="[mod] remove cors in auth service" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
