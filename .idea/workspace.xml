@@ -6,21 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="94aeed82-866f-482a-b01a-a7c22818e2ed" name="Changes" comment="[add] AuthenticationProvider">
       <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/dto/BaseResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/exception/BaseException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/exception/BaseExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/exception/RestExceptions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/model/Authority.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/model/UserInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/repository/AccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/controller/AuthenticationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/dto/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/mappers/IAuthenticationMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/repository/UserRepository.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/security/AuthorizationTokenFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/security/CustomAuthenticationEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/security/TokenProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/service/impl/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/security/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/service/IAuthenticationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/service/impl/AuthenticationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam-service/src/main/java/com/be/authservice/IAMServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/IAMServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam-service/src/main/resources/application-product.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iam-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/iam-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam-service/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/iam-service/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/exception/BaseExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/exception/RestExceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/exception/RestExceptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/model/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/iam-service/src/main/java/com/be/iamservice/model/UserInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,11 +92,11 @@
       <recent name="com.be.cartservice.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.be.iamservice.mappers" />
       <recent name="com.be.iamservice.dto" />
       <recent name="com.be.iamservice.security" />
       <recent name="com.be.authservice.dto" />
       <recent name="com.be.inventoryservice" />
-      <recent name="com.be.inventoryservice.dto" />
     </key>
   </component>
   <component name="RunManager" selected="Application.com.be.iamservice.IAMServiceApplication">
@@ -239,7 +238,35 @@
       <option name="project" value="LOCAL" />
       <updated>1713772123054</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="[add] model and exceptions">
+      <created>1714055955355</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714055955355</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[add] TokenProvider">
+      <created>1714056000156</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714056000156</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[add] EntryPoint and TokenFilter">
+      <created>1714056320587</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714056320587</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[add] implement exception handler">
+      <created>1714117824254</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714117824254</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -257,7 +284,11 @@
     <MESSAGE value="[mod] implement gateway config" />
     <MESSAGE value="[mod] ignore idea folder" />
     <MESSAGE value="[mod] remove cors in auth service" />
-    <option name="LAST_COMMIT_MESSAGE" value="[mod] remove cors in auth service" />
+    <MESSAGE value="[add] model and exceptions" />
+    <MESSAGE value="[add] TokenProvider" />
+    <MESSAGE value="[add] EntryPoint and TokenFilter" />
+    <MESSAGE value="[add] implement exception handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add] implement exception handler" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
